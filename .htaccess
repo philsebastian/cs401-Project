@@ -1,0 +1,12 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^(common)($|/) - [L]
+RewriteRule ^(fonts)($|/) - [L]
+RewriteCond ^([^/]+)/?$ !^favicon\.ico
+
+RewriteCond %{REQUEST_URI} !-d
+RewriteCond %{REQUEST_URI} !-l
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

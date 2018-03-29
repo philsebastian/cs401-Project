@@ -1,0 +1,99 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>PhpMvc</Name>
+    <ProjectGuid>a733612b-914a-4684-a54a-713958afd9b9</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>PhpMvc</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app\controllers\main\home.php" />
+    <Compile Include="app\controllers\main\learn.php" />
+    <Compile Include="app\controllers\main\login.php" />
+    <Compile Include="app\controllers\main\signup.php" />
+    <Compile Include="app\controllers\main\teach.php" />
+    <Compile Include="app\controllers\students\StudentsAccount.php" />
+    <Compile Include="app\controllers\teachers\TeachersAccount.php" />
+    <Compile Include="app\core\App.php" />
+    <Compile Include="app\core\Autoloader.php" />
+    <Compile Include="app\core\Controller.php" />
+    <Compile Include="app\core\Builder.php" />
+    <Compile Include="app\core\Dao.php" />
+    <Compile Include="app\core\Models.php" />
+    <Compile Include="app\core\Session.php" />
+    <Compile Include="app\init.php" />
+    <Compile Include="app\models\main\SignupModel.php" />
+    <Compile Include="app\models\main\LoginModel.php" />
+    <Compile Include="app\models\main\TeachModel.php" />
+    <Compile Include="app\models\main\LearnModel.php" />
+    <Compile Include="app\models\main\HomeModel.php" />
+    <Compile Include="app\models\students\StudentAccountModel.php" />
+    <Compile Include="app\models\teachers\TeacherAccountModel.php" />
+    <Compile Include="app\models\User.php" />
+    <Compile Include="app\views\main\footer.php" />
+    <Compile Include="app\views\main\header.php" />
+    <Compile Include="app\views\main\home.php" />
+    <Compile Include="app\views\main\learn.php" />
+    <Compile Include="app\views\main\login.php" />
+    <Compile Include="app\views\main\signup.php" />
+    <Compile Include="app\views\main\teach.php" />
+    <Compile Include="app\views\students\appointments.php" />
+    <Compile Include="app\views\students\account.php" />
+    <Compile Include="app\views\students\footer.php" />
+    <Compile Include="app\views\students\header.php" />
+    <Compile Include="app\views\teachers\account.php" />
+    <Compile Include="app\views\teachers\footer.php" />
+    <Compile Include="app\views\teachers\header.php" />
+    <Compile Include="index.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app\" />
+    <Folder Include="app\controllers\" />
+    <Folder Include="app\controllers\main\" />
+    <Folder Include="app\controllers\teachers\" />
+    <Folder Include="app\controllers\students\" />
+    <Folder Include="app\core\" />
+    <Folder Include="app\models\" />
+    <Folder Include="app\models\main\" />
+    <Folder Include="app\models\teachers\" />
+    <Folder Include="app\models\students\" />
+    <Folder Include="app\views\" />
+    <Folder Include="app\views\main\" />
+    <Folder Include="app\views\teachers\" />
+    <Folder Include="app\views\students\" />
+    <Folder Include="common\" />
+    <Folder Include="common\css\" />
+    <Folder Include="fonts\" />
+    <Folder Include="common\javascript\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\.htaccess" />
+    <Content Include=".htaccess" />
+    <Content Include="common\css\bootstrap-theme.css" />
+    <Content Include="common\css\bootstrap-theme.css.map" />
+    <Content Include="common\css\bootstrap.css" />
+    <Content Include="common\css\bootstrap.css.map" />
+    <Content Include="common\css\general.css" />
+    <Content Include="common\css\jquery-ui.css" />
+    <Content Include="common\css\jquery-ui.structure.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="common\javascript\big.js" />
+    <Content Include="common\javascript\date.format.js" />
+    <Content Include="common\javascript\general.js" />
+    <Content Include="common\favicon.ico" />
+    <Content Include="common\favicon.png" />
+  </ItemGroup>
+</Project>
