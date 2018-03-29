@@ -1,5 +1,5 @@
     <div>
-        <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top min-navbar">
+        <nav class="navbar navbar-inverse bg-inverse min-navbar">
             <div class="container-fluid  max-navbar">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">

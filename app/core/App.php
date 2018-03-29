@@ -10,7 +10,7 @@ class App
     {
         $url = $this->parseUrl();
 
-        if(isset($url[0]) && (strcmp(strtolower($url[0]), 'students') != -1 || strcmp(strtolower($url[0]), 'teachers') != -1))
+        if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
         {
             $url = $this->OtherPages($url);
         }

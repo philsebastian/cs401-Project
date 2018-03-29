@@ -1,5 +1,5 @@
     <div>
-        <nav class="navbar navbar-inverse bg-inverse navbar-fixed-bottom min-navbar">
+        <nav class="navbar navbar-inverse bg-inverse min-navbar">
             <div class="container-fluid max-navbar">
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">

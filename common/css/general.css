@@ -1,13 +1,12 @@
 body {
-    background: #e8e8e8;
+    background: #ececec;
 }
 
 .contents {
     position: relative;
     min-height: 50px;
-    margin-bottom: 20px;    
-    padding-right: 5px;
-    padding-left: 5px;
+    /*margin-bottom: 20px;*/    
+    padding: 0px 15px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -28,6 +27,7 @@ body {
 
 .min-navbar {
 	min-width: 245px;
+    margin-bottom: 0;
 }
 
 .max-navbar {
@@ -60,14 +60,16 @@ a.disabled {
 }
 
 .primarydiv {
-    margin-top: 55px;
-    margin-bottom: 55px;
+    /*margin-top: 55px;*/
+    /*margin-bottom: 55px;*/
     margin-left: auto;
     margin-right: auto;
+    min-height: 800px;
     max-width: 1050px;
     padding: 5px;
     background-color: #f8f8f8;
     border-color: #e7e7e7;
     border-radius: 4px;
     border: 1px solid transparent;
+    text-align: justify;
 }

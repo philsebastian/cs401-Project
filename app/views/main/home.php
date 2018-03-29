@@ -15,6 +15,9 @@
                 <?php echo $data['name']?>
             </h1>
             <p class="advance clickable">0</p>
+            <?php 
+            echo file_get_contents('https://loripsum.net/api/10/long/headers');
+            ?>
         </div>
     </div>
     <?php require_once(MAINFOOTER); ?>
