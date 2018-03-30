@@ -11,7 +11,7 @@ class Teach extends Controller
     public function index()
     {
         $this->model('TeachModel');
-        $this->loadFullView(["main" . DS ."teach"]);
+        $this->loadFullView(["main" . DS ."main"]);
         echo $this->out();
     }
 

@@ -1,10 +1,7 @@
 <?php
 
-class LearnModel extends Models
+class LearnModel extends MainModel
 {
-    protected $Doa;
-    protected $modelName;
-
     public function __construct()
     {
         parent::__construct('learn');

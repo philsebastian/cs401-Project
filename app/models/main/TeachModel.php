@@ -1,10 +1,7 @@
 <?php
 
-class TeachModel extends Models
+class TeachModel extends MainModel
 {
-    protected $Doa;
-    protected $modelName;
-
     public function __construct()
     {
         parent::__construct('teach');

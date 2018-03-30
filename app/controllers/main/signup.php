@@ -11,7 +11,7 @@ class Signup extends Controller
     public function index()
     {
         $this->model('SignupModel');
-        $this->loadFullView(["main" . DS ."signup"]);
+        $this->loadFullView(["main" . DS ."main"]);
         echo $this->out();
     }
 

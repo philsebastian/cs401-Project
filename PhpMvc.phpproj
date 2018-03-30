@@ -29,8 +29,10 @@
     <Compile Include="app\core\Builder.php" />
     <Compile Include="app\core\Dao.php" />
     <Compile Include="app\core\Models.php" />
+    <Compile Include="app\core\PageModels.php" />
     <Compile Include="app\core\Session.php" />
     <Compile Include="app\init.php" />
+    <Compile Include="app\models\main\MainModel.php" />
     <Compile Include="app\models\main\SignupModel.php" />
     <Compile Include="app\models\main\LoginModel.php" />
     <Compile Include="app\models\main\TeachModel.php" />
@@ -39,8 +41,7 @@
     <Compile Include="app\models\students\StudentAccountModel.php" />
     <Compile Include="app\models\teachers\TeacherAccountModel.php" />
     <Compile Include="app\models\User.php" />
-    <Compile Include="app\views\main\footer.php" />
-    <Compile Include="app\views\main\header.php" />
+    <Compile Include="app\views\main\main.php" />
     <Compile Include="app\views\main\home.php" />
     <Compile Include="app\views\main\learn.php" />
     <Compile Include="app\views\main\login.php" />

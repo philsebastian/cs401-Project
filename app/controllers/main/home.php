@@ -11,7 +11,7 @@ class Home extends Controller
     public function index()
     {
         $this->model('HomeModel');
-        $this->loadFullView(["main" . DS ."home"]);
+        $this->loadFullView(["main" . DS ."main"]);
         echo $this->out();
     }
 

@@ -45,8 +45,90 @@ class Builder
                 $scripts .= DT . '<script src="' . URLROOT . $location . '"></script>' . NL;
             }
         }
-            return $scripts;
+        return $scripts;
     }
+
+    public static function GetCommonFooter()
+    {
+        $footer = '<div>' . NL;
+        $footer .= '<nav class="navbar navbar-inverse bg-inverse min-navbar">' . NL;
+        $footer .= '<div class="container-fluid  max-navbar">' . NL;
+        $footer .= '<div class="navbar-collapse collapse">' . NL;
+        $footer .= '<ul class="nav navbar-nav">' . NL;
+        $footer .= '<li><a href="../navbar-static-bottom/" class="disabled">&#169; 2018</a></li>' . NL;
+        $footer .= '</ul>' . NL;
+        $footer .= '<ul class="nav navbar-nav navbar-right">' . NL;
+        $footer .= '<li id="contact"><a href="' . URLROOT . COMMON . '/' . 'contact">Contact us</a></li>' . NL;
+        $footer .= '</ul>' . NL;
+        $footer .= '</div>' . NL;
+        $footer .= '</div>' . NL;
+        $footer .= '</nav>' . NL;
+        $footer .= '</div>' . NL;
+        return $footer;
+    }
+
+    public static function GetHeading (array $data)  // PHIL TODO -- working on this
+    {
+        $leftNames = $data['leftNames'];
+        $rightNames = $data['rightNames'];
+        $glyphs = $data['glyphs'];
+        $rootpath = $data['rootpath'];
+
+        $links = '<div>' . NL;
+        $links .= '<nav class="navbar navbar-inverse bg-inverse min-navbar">' . NL;
+        $links .= '<div class="container-fluid  max-navbar">' . NL;
+        $links .= '<div class="navbar-header">' . NL;
+        $links .= '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">' . NL;
+        $links .= '<span class="sr-only">Toggle navigation</span>' . NL;
+        $links .= '<span class="icon-bar"></span>' . NL;
+        $links .= '<span class="icon-bar"></span>' . NL;
+        $links .= '<span class="icon-bar"></span>' . NL;
+        $links .= '</button>' . NL;
+        $links .= '<a class="navbar-brand" href="' . URLROOT . '">' . NL;
+        $links .= '<img src="' . URLROOT . COMMON . '/' . 'favicon.ico" width="25" height="25" class="d-inline-block greyimg align-top" alt="" />Music Lessons' . NL;
+        $links .= '</a>' . NL;
+        $links .= '</div>' . NL;
+	    $links .= '<div id="navbar" class="navbar-collapse collapse">' . NL;
+        $links .= '<ul class="nav navbar-nav">' . NL;
+
+	    foreach($leftNames as $index => $name)
+	    {
+		    $links .= '<li id="' . $name . '"';
+            if ($data['name'] == $name)
+            {
+                $links .= ' class="active"';
+            }
+            $links .= '>' . NL;
+		    $links .= '<a href="' . $rootpath . $name . '/">' . ucwords($name) . '</a>' . NL;
+		    $links .= "</li>" . NL;
+	    }
+
+	    $links .= '</ul>' . NL;
+        $links .= '<ul class="nav navbar-nav navbar-right">' . NL;
+
+	    foreach($rightNames as $index => $name)
+	    {
+		    $links .= '<li id="' . $name . '"';
+            if ($data['name'] == $name)
+            {
+                $links .= ' class="active"';
+            }
+            $links .= '>' . NL;
+            $links .= '<a href="' . $rootpath . $name . '/">';
+		    $links .= '<span class="glyphicon glyphicon-' . $glyphs[$name] .  '"></span> ' . ucwords($name) . '</a>' . NL;
+		    $links .= "</li>" . NL;
+	    }
+
+	    $links .= '</ul>' . NL;
+	    $links .= '</div>' . NL;
+        $links .= '</div>' . NL;
+        $links .= '</nav>' . NL;
+        $links .= '</div>' . NL;
+
+	    return $links;
+    }
+
+
 }
 
 ?>
