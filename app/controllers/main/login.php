@@ -11,7 +11,7 @@ class Login extends Controller
     public function index()
     {
         $this->model('LoginModel');
-        $this->loadFullView(["main" . DS ."main"]);
+        $this->loadFullView(["core"]);
         echo $this->out();
     }
 

@@ -33,9 +33,6 @@ class Controller
      */
     protected function loadFullView(array $views)
     {
-        //array_unshift($views, COMMONHEADER);
-        //array_push($views, COMMONFOOTER);
-
         $data = $this->getData();   // data needed in the view
         $this->loadView($views, $data);
     }
@@ -45,10 +42,8 @@ class Controller
      * @param  array  $views an array of views to be loaded
      * @return string the compiled view
      */
-    protected function loadView(array $views, array $data = [])
+    private function loadView(array $views, array $data = [])
     {
-        // http://chadminick.com/articles/simple-php-template-engine.html#sthash.nINd6UXY.dpbs
-
         ob_start();
         foreach ($views as $k => $view) {
             $view_file = VIEWS . DS . $view . '.php';

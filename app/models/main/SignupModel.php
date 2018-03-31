@@ -7,4 +7,9 @@ class SignupModel extends MainModel
         parent::__construct('signup');
     }
 
+    public function GetData()
+    {
+        $permissions = ["permissions" => $this->Doa->GetPermissionLevels()];
+        return array_merge(parent::GetData(), $permissions);
+    }
 }

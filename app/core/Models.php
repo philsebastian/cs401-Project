@@ -7,6 +7,7 @@ class Models
 
     public function __construct($name)
     {
+        $this->Doa = new Dao();
         $this->modelName = $name;
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class StudentAccountModel extends Models
+class StudentAccountModel extends StudentsModel
 {
     protected $Doa;
     protected $modelName;

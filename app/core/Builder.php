@@ -67,8 +67,10 @@ class Builder
         return $footer;
     }
 
-    public static function GetHeading (array $data)  // PHIL TODO -- working on this
+    public static function GetHeading (array $data)  
     {
+        //  PHIL TODO -- what about contact us -- if you go to contact then what if you were signed in
+
         $leftNames = $data['leftNames'];
         $rightNames = $data['rightNames'];
         $glyphs = $data['glyphs'];
@@ -84,7 +86,7 @@ class Builder
         $links .= '<span class="icon-bar"></span>' . NL;
         $links .= '<span class="icon-bar"></span>' . NL;
         $links .= '</button>' . NL;
-        $links .= '<a class="navbar-brand" href="' . URLROOT . '">' . NL;
+        $links .= '<a class="navbar-brand" href="' . $rootpath . '">' . NL;
         $links .= '<img src="' . URLROOT . COMMON . '/' . 'favicon.ico" width="25" height="25" class="d-inline-block greyimg align-top" alt="" />Music Lessons' . NL;
         $links .= '</a>' . NL;
         $links .= '</div>' . NL;
@@ -114,7 +116,7 @@ class Builder
                 $links .= ' class="active"';
             }
             $links .= '>' . NL;
-            $links .= '<a href="' . $rootpath . $name . '/">';
+            $links .= '<a href="' . URLROOT . $name . '/">';
 		    $links .= '<span class="glyphicon glyphicon-' . $glyphs[$name] .  '"></span> ' . ucwords($name) . '</a>' . NL;
 		    $links .= "</li>" . NL;
 	    }

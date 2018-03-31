@@ -11,7 +11,7 @@ class Learn extends Controller
     public function index()
     {
         $this->model('LearnModel');
-        $this->loadFullView(["main" . DS ."main"]);
+        $this->loadFullView(["core"]);
         echo $this->out();
     }
 

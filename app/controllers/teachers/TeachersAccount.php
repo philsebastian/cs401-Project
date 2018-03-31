@@ -11,7 +11,7 @@ class TeachersAccount extends Controller
     public function index()
     {
         $this->model('TeacherAccountModel');
-        $this->loadFullView(["teachers" . DS ."account"]);
+        $this->loadFullView(["core"]);
         echo $this->out();
     }
 
