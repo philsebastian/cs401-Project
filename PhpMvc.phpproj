@@ -28,6 +28,7 @@
     <Compile Include="app\controllers\students\studentsappointments.php" />
     <Compile Include="app\controllers\students\studentsteacher.php" />
     <Compile Include="app\controllers\students\studentsaccount.php" />
+    <Compile Include="app\controllers\teachers\teacherscontroller.php" />
     <Compile Include="app\controllers\teachers\teachersaccount.php" />
     <Compile Include="app\core\App.php" />
     <Compile Include="app\core\Autoloader.php" />

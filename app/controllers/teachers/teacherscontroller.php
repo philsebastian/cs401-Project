@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-class StudentsController extends Controller
+class TeachersController extends Controller
 {
     public function __construct($name)
     {
-        if(isset($_SESSION['userId']) && isset($_SESSION['role']) && $_SESSION['role'] != 2)
+        if(isset($_SESSION['userId']) && isset($_SESSION['role']) && $_SESSION['role'] != 1)
         {
             parent::__construct($name);
         }

@@ -1,6 +1,6 @@
 <?php
 
-class TeachersAccount extends Controller
+class TeachersAccount extends TeachersController
 {
     public function __construct()
     {
@@ -11,7 +11,7 @@ class TeachersAccount extends Controller
     public function index()
     {
         $this->model('TeacherAccountModel');
-        $this->loadView("core");
+        $this->loadView(MAINCORE);
         echo $this->out();
     }
 
