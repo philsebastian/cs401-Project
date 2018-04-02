@@ -29,6 +29,8 @@ class Login extends Controller
 
     public function authenticate()
     {
+        echo "GOT HERE";
+        exit();
         if (isset($_POST['username']) && $_POST['username'] != "")
         {
             $username = $_POST['username'];
