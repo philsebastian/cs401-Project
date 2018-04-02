@@ -37,7 +37,7 @@ class Controller
      */
     protected function loadView($view, array $contents = [])
     {
-        $data = $this->getData($contents);   // data needed in the view
+        $data = $this->GetData($contents);   // data needed in the view
         ob_start();
 
         $view_file = VIEWS . DS . $view . '.php';

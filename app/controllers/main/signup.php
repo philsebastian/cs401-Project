@@ -21,14 +21,14 @@ class Signup extends Controller
     {
         if (isset($_POST))
         {
-            $loginInfo = $_POST;
-            $echoString = "<pre>" . print_r($loginInfo) . "</pre>";
+            $session = new Session();
+            $session->AddNewUser($_POST);
         }
         else
         {
-            $echoString = "NO POST INFORMATION";
+            $_SESSION['errorMessage'] = "No information submitted. Please fill out form.";
+            exit(header("Location: " . URLROOT . "signup/"));
         }
-        return $echoString;
     }
 
 }

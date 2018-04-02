@@ -13,30 +13,6 @@ class Dao
         return new PDO("mysql:host={$this->host};dbname={$this->db}", $this->user, $this->pass);
     }
 
-    public function RunInsertQuery ($query, array $params)
-    {
-        $conn = $this->getConnection();
-        $q = $conn->prepare($query);
-        foreach($params as $key => $value)
-        {
-            $q->bindParam($key, $value);
-        }
-        $q->execute();
-    }
-
-    public function RunSelectQuery($query, array $params)
-    {
-        $conn = $this->getConnection();
-        $q = $conn->prepare($query);
-        foreach($params as $key => $value)
-        {
-            $q->bindParam($key, $value);
-        }
-        $q->execute();
-        return reset($q->fetchAll());
-    }
-
-    // PHIL TODO -- look into session
     public function GetPermissionLevels()
     {
         // PHIL TODO -- change to query to builder of radio buttons
@@ -44,23 +20,20 @@ class Dao
         return $permissions;
     }
 
-
     public function GetUserIdAndRole(array $params)
     {
         $query = "SELECT
-                         usernames.Id,
+                         usernames.ID,
                          permissions.permissionLevelId
-                  FROM (((((credentials
-                         LEFT JOIN usernames ON usernames.ID = credentials.usernameId)
-                         LEFT JOIN allcreds ON allcreds.ID = credentials.ID)
-                         LEFT JOIN permissions ON permissions.usernameId = credentials.usernameId)
-                         LEFT JOIN users ON users.usernameId = credentials.usernameId)
-                         LEFT JOIN userinfo ON userinfo.ID = users.userInfoId)
+                  FROM (((allcreds
+                         LEFT JOIN usernames ON usernames.ID = allcreds.usernameId)
+                         LEFT JOIN permissions ON permissions.usernameId = allcreds.usernameId)
+                         LEFT JOIN userinfo ON userinfo.usernameId = allcreds.usernameId)
                   WHERE
                          usernames.username = :username
                          AND
                          allcreds.login = :password
-                         AND allcreds.inactivetime is null AND users.inactivetime is null AND permissions.inactivetime is null";
+                         AND allcreds.inactivetime is null AND usernames.inactivetime is null AND permissions.inactivetime is null";
 
         $conn = $this->getConnection();
         $q = $conn->prepare($query);
@@ -83,15 +56,13 @@ class Dao
                          userinfo.theState as state,
                          userinfo.zip,
                          permissions.permissionLevelId
-                  FROM (((((credentials
-                         LEFT JOIN usernames ON usernames.ID = credentials.usernameId)
-                         LEFT JOIN allcreds ON allcreds.ID = credentials.ID)
-                         LEFT JOIN permissions ON permissions.usernameId = credentials.usernameId)
-                         LEFT JOIN users ON users.usernameId = credentials.usernameId)
-                         LEFT JOIN userinfo ON userinfo.ID = users.userInfoId)
+                  FROM (((allcreds
+                         LEFT JOIN usernames ON usernames.ID = allcreds.usernameId)
+                         LEFT JOIN permissions ON permissions.usernameId = allcreds.usernameId)
+                         LEFT JOIN userinfo ON userinfo.usernameId = usernames.ID)
                   WHERE
-                         usernames.ID = :userId
-                         AND allcreds.inactivetime is null AND users.inactivetime is null AND permissions.inactivetime is null";
+                         allcreds.usernameId = :userId
+                         AND allcreds.inactivetime is null AND usernames.inactivetime is null AND permissions.inactivetime is null";
 
         $conn = $this->getConnection();
         $q = $conn->prepare($query);
@@ -100,6 +71,97 @@ class Dao
         $q->execute();
         $results = $q->fetchAll();
         return reset($results);
+    }
+
+    public function IsUsernameAvailable($username)
+    {
+        $query = "SELECT usernames.username FROM usernames WHERE usernames.username = :username";
+
+        $conn = $this->getConnection();
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":username", $username);
+        $q->execute();
+        $results = $q->fetchAll();
+
+        return (count($results) == 0);
+    }
+
+    public function GetNewUsernameId($username)
+    {
+        $insert = "INSERT INTO usernames (username) VALUES (:username);";
+        $conn = $this->getConnection();
+        $i = $conn->prepare($insert);
+        $i->bindParam(":username", $username);
+        $i->execute();
+
+        $query = "SELECT usernames.ID FROM usernames WHERE username.username = :username AND username.inactivetime is null;";
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":username", $username);
+        $q->execute();
+        $results = $q->fetchAll();
+        return $results['ID'];
+    }
+
+    public function GetNewUserInfoId($usernameId, array $params)
+    {
+        $insert = "INSERT INTO userinfo (usernameId, lastname, firstname, street, city, theState, zip)
+                   VALUES (:usernameId, :lastname, :firstname, :street, :city, :theState, :zip)";
+        $conn = $this->getConnection();
+        $i = $conn->prepare($insert);
+        $i->bindParam(":usernameId", $usernameId);
+        $i->bindParam(":lastname", $params['lastname']);
+        $i->bindParam(":firstname", $params['firstname']);
+        $i->bindParam(":street", $params['street']);
+        $i->bindParam(":city", $params['city']);
+        $i->bindParam(":theState", $params['state']);
+        $i->bindParam(":zip", $params['zip']);
+        $i->execute();
+
+        $query = "SELECT userinfo.ID FROM userinfo WHERE userinfo.usernameId = :usernameId AND userinfo.inactivetime is null;";
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":usernameId", $usernameId);
+        $q->execute();
+        $results = $q->fetchAll();
+        return $results['ID'];
+    }
+
+    public function GetNewPasswordId($usernameId, $password)
+    {
+        $insert = "INSERT INTO allcreds (usernameId, login) VALUES (:usernameId, :password);";
+        $conn = $this->getConnection();
+        $i = $conn->prepare($insert);
+        $i->bindParam(":usernameId", $usernameId);
+        $i->bindParam(":password", $password);
+        $i->execute();
+
+        $query = "SELECT allcreds.ID FROM allcreds WHERE usernameId = :usernameId AND allcreds.inactivetime is null;";
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":usernameId", $usernameId);
+        $q->execute();
+        $results = $q->fetchAll();
+        return $results['ID'];
+    }
+
+    public function GetPermissionsId($usernameId, $permissionlevelId)
+    {
+        $insert = "INSERT INTO permissions (usernameId, permissionLevelId) VALUES (:usernameId, :permissionLevelId);";
+        $conn = $this->getConnection();
+        $i = $conn->prepare($insert);
+        $i->bindParam(":usernameId", $usernameId);
+        $i->bindParam(":permissionLevelId", $permissionlevelId);
+        $i->execute();
+
+        $query = "SELECT ID FROM permissions WHERE usernameId = :usernameId AND inactivetime is null;";
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":usernameId", $usernameId);
+        $q->execute();
+        $results = $q->fetchAll();
+        return $results['ID'];
     }
 
 } // end Dao

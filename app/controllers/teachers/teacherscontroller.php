@@ -5,7 +5,7 @@ class TeachersController extends Controller
 {
     public function __construct($name)
     {
-        if(isset($_SESSION['userId']) && isset($_SESSION['role']) && $_SESSION['role'] != 1)
+        if(isset($_SESSION['usernameId']) && isset($_SESSION['role']) && $_SESSION['role'] != 1)
         {
             parent::__construct($name);
         }

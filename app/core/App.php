@@ -64,9 +64,9 @@ class App
     protected function OtherPages(array $url)
     {
         $search = strtolower($url[0]);
-        //$search = ucfirst($search);
+        $search = ucfirst($search);
         unset($url[0]);
-        $this->controller = $search . 'account';
+        $this->controller = $search . 'Account';
 
 
 
@@ -78,7 +78,7 @@ class App
         }
         else
         {
-            exit(header("Location: " . URLROOT . $search . '/account'));
+            exit(header("Location: " . URLROOT . $search . '/Account'));
         }
 
         if(isset($url[2]) && method_exists($this->controller, $url[2]))

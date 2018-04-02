@@ -13,6 +13,6 @@ class StudentsModel extends PageModels
     public function GetMyStudentAccountInfo()
     {
         $session = new Session();
-        return $session->GetMyUserAccountInfo($_SESSION['userId']);
+        return $session->GetMyUserAccountInfo($_SESSION['usernameId']);
     }
 }

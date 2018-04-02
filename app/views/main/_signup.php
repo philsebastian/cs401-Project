@@ -14,15 +14,24 @@
                                     <?php
                                     foreach($data['permissions'] as $permission => $id)
                                     {
-                                        if ($permission == "Student")
+                                        $active = "";
+                                        $checked = "";
+
+                                        if (isset($data['permissionlevel']))
                                         {
-                                            $active = "active";
-                                            $checked = "checked=\"\"";
+                                            if ($data['permissionlevel'] == $id)
+                                            {
+                                                $active = "active";
+                                                $checked = "checked=\"\"";
+                                            }
                                         }
                                         else
                                         {
-                                            $active = "";
-                                            $checked = "";
+                                            if ($id == 1)
+                                            {
+                                                $active = "active";
+                                                $checked = "checked=\"\"";
+                                            }
                                         }
 
                                         $options .= "<label class=\"radio-inline {$active}\"><input type=\"radio\" value=\"{$id}\" name=\"permissionlevel\" {$checked}>{$permission}</label>";
@@ -38,11 +47,19 @@
                     <label class="grouplabel" for="credentials">
                         Email and Password
                     </label>
+                    <?php
+                    if (isset($_SESSION['errorMessage']))
+                    {
+                        $message = "<div class=\"alert alert-danger\">{$_SESSION['errorMessage']}</div>";
+                        unset($_SESSION['errorMessage']);
+                        echo $message;
+                    }
+                    ?>
                     <div name="credentials" class="well">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="username">Email address:</label>
                             <div class="col-xs-3">
-                                <input type="email" name="username" class="form-control" />
+                                <input type="email" name="username" class="form-control" value="<?= $data['username'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -58,31 +75,43 @@
                             </div>
                         </div>
                     </div>
-                    <label class="grouplabel" for="address">Address Information</label>
+                    <label class="grouplabel" for="address">Personal and Address Information</label>
 
                     <div name="address" class="well">
                         <div class="form-group">
+                            <label class="control-label col-sm-2" for="street">First Name:</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="firstname" class="form-control" value="<?= $data['firstname'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="street">Last Name:</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="lastname" class="form-control" value="<?= $data['lastname'] ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-sm-2" for="street">Street address:</label>
                             <div class="col-xs-3">
-                                <input type="text" name="street" class="form-control" />
+                                <input type="text" name="street" class="form-control" value="<?= $data['street'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="city">City:</label>
                             <div class="col-xs-3">
-                                <input type="text" name="city" class="form-control" />
+                                <input type="text" name="city" class="form-control" value="<?= $data['city'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="state">State:</label>
                             <div class="col-xs-3">
-                                <input type="text" name="state" class="form-control" />
+                                <input type="text" name="state" class="form-control" value="<?= $data['state'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="zip">Zip Code:</label>
                             <div class="col-xs-3">
-                                <input type="number" name="zip" class="form-control" />
+                                <input type="number" name="zip" class="form-control" value="<?= $data['zip'] ?>" />
                             </div>
                         </div>
                     </div>

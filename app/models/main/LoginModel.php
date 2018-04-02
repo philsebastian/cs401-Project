@@ -14,6 +14,7 @@ class LoginModel extends MainModel
         if (isset($_SESSION['presets']['username']))
         {
             $username = ["username" => $_SESSION['presets']['username']];
+            unset($_SESSION['presets']);
             $return = array_merge($username, parent::GetData());
         }
         else

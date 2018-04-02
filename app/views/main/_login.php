@@ -5,6 +5,12 @@
                                 Login
                             </h3>
                             <?php
+                            if (isset($_SESSION['successMessage']))
+                            {
+                                $message = "<div class=\"alert alert-success\">{$_SESSION['successMessage']}</div>";
+                                unset($_SESSION['successMessage']);
+                                echo $message;
+                            }
                             if (isset($_SESSION['errorMessage']))
                             {
                                 $message = "<div class=\"alert alert-danger\">{$_SESSION['errorMessage']}</div>";
