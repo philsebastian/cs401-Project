@@ -48,6 +48,8 @@ class Login extends Controller
             $_SESSION['presets']['username'] = $_POST['username'];
             exit(header("Location: " . URLROOT . "login/" ));
         }
+        echo "GOT HERE";
+        exit();
         $session = new Session();
         $session->validateLogin($username, $password);
     }
