@@ -66,7 +66,7 @@ class App
         $search = strtolower($url[0]);
         //$search = ucfirst($search);
         unset($url[0]);
-        $this->controller = $search . 'Account';
+        $this->controller = $search . 'account';
 
 
 

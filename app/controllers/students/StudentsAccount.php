@@ -1,24 +1,13 @@
 <?php
 session_start();
 
-class StudentsAccount extends Controller
+class StudentsAccount extends StudentsController
 {
-    protected $content;
-
     public function __construct()
     {
-        parent::__construct("account");
-    }
-
-    public function index()
-    {
-        $this->content = array("students" . DS . "_profile");
-
         if(isset($_SESSION['userId']) && isset($_SESSION['role']) && $_SESSION['role'] != 2)
         {
-            $this->model('StudentProfileModel');
-            $this->loadView("students" . DS . "core", $this->content);
-            echo $this->out();
+            parent::__construct("account");
         }
         else
         {
@@ -27,9 +16,20 @@ class StudentsAccount extends Controller
         }
     }
 
+    public function index()
+    {
+        $content = array("students" . DS . "_profile");
+
+
+        $this->model('StudentProfileModel');
+        $this->loadView(STUDENTCORE, $content);
+        echo $this->out();
+
+    }
+
     public function appointments()
     {
-        
+
     }
 
     public function profile()
@@ -44,7 +44,7 @@ class StudentsAccount extends Controller
 
     public function myteacher()
     {
-        $controller = new StudentsTeacher();
+        $controller = new studentsteacher();
         $controller->profile();
 
     }

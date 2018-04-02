@@ -23,9 +23,12 @@
     <Compile Include="app\controllers\main\logout.php" />
     <Compile Include="app\controllers\main\signup.php" />
     <Compile Include="app\controllers\main\teach.php" />
-    <Compile Include="app\controllers\students\StudentsTeacher.php" />
+    <Compile Include="app\controllers\students\studentscontroller.php" />
+    <Compile Include="app\controllers\students\studentsnotebook.php" />
+    <Compile Include="app\controllers\students\studentsappointments.php" />
+    <Compile Include="app\controllers\students\studentsteacher.php" />
     <Compile Include="app\controllers\students\studentsaccount.php" />
-    <Compile Include="app\controllers\teachers\TeachersAccount.php" />
+    <Compile Include="app\controllers\teachers\teachersaccount.php" />
     <Compile Include="app\core\App.php" />
     <Compile Include="app\core\Autoloader.php" />
     <Compile Include="app\core\Controller.php" />
@@ -42,6 +45,9 @@
     <Compile Include="app\models\main\TeachModel.php" />
     <Compile Include="app\models\main\LearnModel.php" />
     <Compile Include="app\models\main\HomeModel.php" />
+    <Compile Include="app\models\students\StudentNotebookModel.php" />
+    <Compile Include="app\models\students\StudentAppointmentModel.php" />
+    <Compile Include="app\models\students\StudentTeacherModel.php" />
     <Compile Include="app\models\students\StudentProfileModel.php" />
     <Compile Include="app\models\students\StudentsModel.php" />
     <Compile Include="app\models\teachers\TeachersModel.php" />
@@ -50,7 +56,9 @@
     <Compile Include="app\views\main\_login.php" />
     <Compile Include="app\views\main\_signup.php" />
     <Compile Include="app\views\main\_randomcontents.php" />
-    <Compile Include="app\views\students\appointments.php" />
+    <Compile Include="app\views\students\_notebook.php" />
+    <Compile Include="app\views\students\_teacherprofile.php" />
+    <Compile Include="app\views\students\_appointments.php" />
     <Compile Include="app\views\students\_profile.php" />
     <Compile Include="app\views\students\students_core.php" />
     <Compile Include="app\views\teachers\account.php" />
