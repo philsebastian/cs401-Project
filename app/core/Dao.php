@@ -3,10 +3,16 @@ session_start();
 
 class Dao
 {
+    /*
     private $host = "localhost";
     private $db = "musicappdb";
     private $user = "mlApp";
     private $pass = "gIA41vz6qTzqA2Sv";
+    */
+    private $host = "us-cdbr-iron-east-05.cleardb.net";
+    private $db = "heroku_8e75c2deadccfe3";
+    private $user = "b8094c43f3c6b3";
+    private $pass = "efe13701";
 
     public function getConnection ()
     {
@@ -42,7 +48,7 @@ class Dao
         $q->bindParam(":password", $params["password"]);
         $q->execute();
         $results = $q->fetchAll();
-        return reset($results);
+        return $results;
     }
 
     public function GetUserAccountInfo($userId)
@@ -70,7 +76,7 @@ class Dao
         $q->bindParam(":userId", $userId);
         $q->execute();
         $results = $q->fetchAll();
-        return reset($results);
+        return $results;
     }
 
     public function IsUsernameAvailable($username)
