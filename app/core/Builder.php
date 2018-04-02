@@ -2,6 +2,20 @@
 
 class Builder
 {
+    public static function IncludePartialView($partialView, array $data)
+    {
+        ob_start();
+
+        include VIEWS . DS . $partialView . '.php';
+        include $view_file;
+
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        return $content;
+    }
+
+    // PHIL TODO -- change these to partial views
     public static function GetCssAndJs()
     {
         return  self::GetJs() . self::GetCss();
@@ -67,12 +81,12 @@ class Builder
         return $footer;
     }
 
-    public static function GetHeading (array $data)  
+    public static function GetHeading (array $data)
     {
         //  PHIL TODO -- what about contact us -- if you go to contact then what if you were signed in
 
-        $leftNames = $data['leftNames'];
-        $rightNames = $data['rightNames'];
+        $primarynav = $data['primarynav'];
+        $controlnav = $data['controlnav'];
         $glyphs = $data['glyphs'];
         $rootpath = $data['rootpath'];
 
@@ -93,7 +107,7 @@ class Builder
 	    $links .= '<div id="navbar" class="navbar-collapse collapse">' . NL;
         $links .= '<ul class="nav navbar-nav">' . NL;
 
-	    foreach($leftNames as $index => $name)
+	    foreach($primarynav as $index => $name)
 	    {
 		    $links .= '<li id="' . $name . '"';
             if ($data['name'] == $name)
@@ -108,7 +122,7 @@ class Builder
 	    $links .= '</ul>' . NL;
         $links .= '<ul class="nav navbar-nav navbar-right">' . NL;
 
-	    foreach($rightNames as $index => $name)
+	    foreach($controlnav as $index => $name)
 	    {
 		    $links .= '<li id="' . $name . '"';
             if ($data['name'] == $name)

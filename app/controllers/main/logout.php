@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Logout extends Controller
 {
@@ -12,8 +13,9 @@ class Logout extends Controller
     {
         // Here is where i destroy the session
         // Reroute to a page??
-        header("Location: " . URLROOT . "home", true);
-        die();
+        session_destroy();
+        session_start();
+        exit(header("Location: " . URLROOT . "home", true));
     }
 
 }

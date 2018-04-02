@@ -2,15 +2,17 @@
 
 class PageModels extends Models
 {
-    protected $leftNames;
-    protected $rightNames;
+    protected $content;
+    protected $primarynav;
+    protected $controlnav;
     protected $glyphs;
     protected $rootpath;
 
-    public function __construct($name, $left, $right, $glyphs, $rootpath)
+    public function __construct($name, $primary, $control, $glyphs, $rootpath)
     {
-        $this->leftNames = $left;
-        $this->rightNames = $right;
+        $this->content = [];
+        $this->primarynav = $primary;
+        $this->controlnav = $control;
         $this->glyphs = $glyphs;
         $this->rootpath = $rootpath;
         parent::__construct($name);
@@ -18,7 +20,8 @@ class PageModels extends Models
 
     public function GetData()
     {
-        $headingLinks = ['leftNames' => $this->leftNames, 'rightNames' => $this->rightNames, 'glyphs' => $this->glyphs, 'rootpath' => $this->rootpath];
-        return array_merge(parent::GetData(), $headingLinks);
+        $headingLinks = ['primarynav' => $this->primarynav, 'controlnav' => $this->controlnav, 'glyphs' => $this->glyphs, 'rootpath' => $this->rootpath];
+        $data = array_merge(parent::GetData(), $headingLinks);
+        return $data;
     }
 }

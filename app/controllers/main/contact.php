@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Contact extends Controller
 {
@@ -11,7 +12,10 @@ class Contact extends Controller
     public function index()
     {
         $this->model('ContactModel');
-        $this->loadFullView(["core"]);
+
+        $content = $this->GetRandomContent();
+        $this->loadView(MAINCORE, $content);
+
         echo $this->out();
     }
 

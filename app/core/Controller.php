@@ -1,10 +1,10 @@
 <?php
+session_start();
 
 class Controller
 {
     protected $name;
     protected $data;
-    private $content;
 
     public function __construct($name)
     {
@@ -21,34 +21,29 @@ class Controller
     /**
      * @return array data passed to the view
      */
-    protected function GetData()
+    protected function GetData(array $contents = [])
     {
-        return $this->data->GetData();
-    }
-
-    /**
-     *
-     * @param  array  $views an array of views to be loaded
-     * @return string the compiled view
-     */
-    protected function loadFullView(array $views)
-    {
-        $data = $this->getData();   // data needed in the view
-        $this->loadView($views, $data);
-    }
-
-    /**
-     *
-     * @param  array  $views an array of views to be loaded
-     * @return string the compiled view
-     */
-    private function loadView(array $views, array $data = [])
-    {
-        ob_start();
-        foreach ($views as $k => $view) {
-            $view_file = VIEWS . DS . $view . '.php';
-            include $view_file;
+        $data = $this->data->GetData();
+        if (count($contents) > 0)
+        {
+            $data = array_merge($data, ['contents' => $contents]);
         }
+        return $data;
+    }
+
+    /**
+     *
+     * @param  array  $views an array of views to be loaded
+     * @return string the compiled view
+     */
+    protected function loadView($view, array $contents = [])
+    {
+        $data = $this->getData($contents);   // data needed in the view
+        ob_start();
+
+        $view_file = VIEWS . DS . $view . '.php';
+        include $view_file;
+
         $content = ob_get_contents();
         ob_end_clean();
         $this->content = $content;
@@ -61,5 +56,16 @@ class Controller
     public function out()
     {
         return $this->content;
+    }
+
+    public function GetRandomContent()
+    {
+        $content = array("main" . DS . "_randomcontents");
+        $int = rand(0, 10);
+        for($i = 0; $i < $int; $i++)
+        {
+            array_push($content, "main" . DS . "_randomcontents");
+        }
+        return $content;
     }
 }

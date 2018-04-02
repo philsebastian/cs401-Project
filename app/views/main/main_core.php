@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +14,12 @@
     <?php echo Builder::GetHeading($data) ?>
     <div class="primarydiv">
         <div class="contents">
-            <h1>
-                <?php echo $data['name']?>
-            </h1>
-            <p class="advance clickable">0</p>
-            <?php echo file_get_contents('https://loripsum.net/api/10/long/headers'); ?>
+            <?php
+            for($i = 0; $i < count($data['contents']); $i++)
+            {
+                echo Builder::IncludePartialView($data['contents'][$i], $data);
+            }
+            ?>
         </div>
     </div>
     <?php echo Builder::GetCommonFooter(); ?>

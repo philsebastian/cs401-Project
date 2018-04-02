@@ -1,18 +1,23 @@
 <?php
+session_start();
 
 class Models
 {
-    protected $Doa;
+    protected $Dao;
     protected $modelName;
 
     public function __construct($name)
     {
-        $this->Doa = new Dao();
+        $this->Dao = new Dao();
         $this->modelName = $name;
     }
 
     public function GetData()
     {
-        return ['name' => $this->modelName];
+        if (isset($_SESSION['presets']))
+        {
+            unset($_SESSION['presets']);
+        }
+        return ['name' => $this->modelName, 'random' => rand(1, 10)];
     }
 }

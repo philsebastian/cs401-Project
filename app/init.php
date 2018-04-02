@@ -1,4 +1,5 @@
 <?php
+
 define('DIR', __DIR__);
 define('CORE', DIR . DS . 'core');
 
@@ -13,6 +14,9 @@ define('STUDENTSMODELS', MODELS . DS . 'students');
 define('TEACHERSMODELS', MODELS . DS . 'teachers');
 
 define('VIEWS', DIR . DS . 'views');
+define("MAINCORE", "main" . DS . "main_core");
+define("STUDENTCORE", "students" . DS . "students_core");
+define("TEACHERCORE", "teacher" . DS . "teachers_core");
 
 define('AUTOLOAD_CLASSES', serialize(array(MAINCONTROLLERS, STUDENTSCONTROLLERS, TEACHERSCONTROLLERS, CORE, MODELS, MAINMODELS, STUDENTSMODELS, TEACHERSMODELS, VIEWS)));
 

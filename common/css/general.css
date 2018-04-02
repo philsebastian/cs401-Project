@@ -73,3 +73,23 @@ a.disabled {
     border: 1px solid transparent;
     text-align: justify;
 }
+
+.row-space 
+{
+    margin: 5px auto;
+}
+
+.grouplabel {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: larger;
+}
+
+.bottom-align-text {
+    vertical-align: text-bottom;
+}
+
+h3.space-after 
+{
+    margin-bottom: 25px;
+}

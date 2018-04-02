@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Home extends Controller
 {
@@ -11,7 +12,10 @@ class Home extends Controller
     public function index()
     {
         $this->model('HomeModel');
-        $this->loadFullView(["core"]);
+
+        $content = $this->GetRandomContent();
+        $this->loadView(MAINCORE, $content);
+
         echo $this->out();
     }
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Learn extends Controller
 {
@@ -11,7 +12,9 @@ class Learn extends Controller
     public function index()
     {
         $this->model('LearnModel');
-        $this->loadFullView(["core"]);
+
+        $content = $this->GetRandomContent();
+        $this->loadView(MAINCORE, $content);
         echo $this->out();
     }
 

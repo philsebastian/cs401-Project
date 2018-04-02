@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class App
 {
@@ -8,6 +9,7 @@ class App
 
     public function __construct()
     {
+
         $url = $this->parseUrl();
 
         if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
@@ -18,10 +20,12 @@ class App
         {
             $url = $this->MainPages($url);
         }
+    }
 
-        $this->params = $url ? array_values($url) : [];
+    private function GoToPage()
+    {
         $this->controller = new $this->controller();
-        call_user_func_array([$this->controller, $this->method], $this->params);
+        call_user_func_array([$this->controller, $this->method], array($this->params));
     }
 
     protected function MainPages(array $url)
@@ -33,8 +37,7 @@ class App
         }
         else
         {
-            header("Location: " . URLROOT . "home", true);
-            die();
+            exit(header("Location: " . URLROOT . "home"));
         }
 
         if(isset($url[1]) && method_exists($this->controller, $url[1]))
@@ -42,25 +45,40 @@ class App
             $this->method = $url[1];
             unset($url[1]);
         }
-        return $url;
+
+        $this->params = [];
+
+        if(count($url) > 0)
+        {
+            $this->params = array_values($url);
+            $_SESSION['params'] = $this->params;
+            $method = ($this->method != "index") ? $this->method : "";
+
+            exit(header("Location: " . URLROOT . $this->controller . "/" . $method));
+
+        }
+
+        $this->GoToPage();
     }
 
     protected function OtherPages(array $url)
     {
         $search = strtolower($url[0]);
-        $search = ucfirst($search);
+        //$search = ucfirst($search);
         unset($url[0]);
         $this->controller = $search . 'Account';
 
-        if(isset($url[1]) && $this->ControllerExists($search . ucfirst(strtolower($url[1]))))
+
+
+        if(isset($url[1]) && $this->ControllerExists($search . strtolower($url[1])))
         {
+            $controller = $url[1];
             $this->controller = $search . $url[1];
             unset($url[1]);
         }
         else
         {
-            header("Location: " . URLROOT . $search . '/Account', true);
-            die();
+            exit(header("Location: " . URLROOT . $search . '/account'));
         }
 
         if(isset($url[2]) && method_exists($this->controller, $url[2]))
@@ -68,7 +86,19 @@ class App
             $this->method = $url[2];
             unset($url[2]);
         }
-        return $url;
+
+        $this->params = [];
+
+        if(count($url) > 0)
+        {
+            $this->params = array_values($url);
+            $_SESSION['params'] = $this->params;
+            $method = ($this->method != "index") ? $this->method : "";
+
+            exit(header("Location: " . URLROOT . $search . "/" . $controller . "/" . $method));
+        }
+
+        $this->GoToPage();
     }
 
     protected function parseUrl()
