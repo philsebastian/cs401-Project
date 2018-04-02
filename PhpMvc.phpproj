@@ -37,7 +37,7 @@
     <Compile Include="app\core\Dao.php" />
     <Compile Include="app\core\Models.php" />
     <Compile Include="app\core\PageModels.php" />
-    <Compile Include="app\core\User.php" />
+    <Compile Include="app\core\Session.php" />
     <Compile Include="app\init.php" />
     <Compile Include="app\models\main\ContactModel.php" />
     <Compile Include="app\models\main\MainModel.php" />

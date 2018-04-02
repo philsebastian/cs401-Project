@@ -13,7 +13,6 @@ class Controller
 
     protected function model($model)
     {
-
         $this->data = new $model();
         return $this->data;
     }
@@ -67,5 +66,10 @@ class Controller
             array_push($content, "main" . DS . "_randomcontents");
         }
         return $content;
+    }
+
+    protected function Session()
+    {
+        return $this->session;
     }
 }

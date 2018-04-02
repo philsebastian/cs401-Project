@@ -9,9 +9,7 @@ class StudentTeacherModel extends StudentsModel
 
     public function GetData()
     {
-        // PHIL TODO --  currently stubbed
-        $session = new User();
-        $accountInfo = $session->GetMyUserAccountInfo($_SESSION['userId']);
+        $accountInfo = $this->User->GetMyUserAccountInfo($_SESSION['userId']);
         return (array_merge(parent::GetData(), $accountInfo));
     }
 

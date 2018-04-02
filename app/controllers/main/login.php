@@ -14,7 +14,7 @@ class Login extends Controller
     {
         if(isset($_SESSION['role']))
         {
-            $session = new User();
+            $session = new Session();
             $session->RedirectBasedOnRole();
         }
         else
@@ -48,7 +48,7 @@ class Login extends Controller
             $_SESSION['presets']['username'] = $_POST['username'];
             exit(header("Location: " . URLROOT . "login/" ));
         }
-        $session = new User();
+        $session = new Session();
         $session->validateLogin($username, $password);
     }
 

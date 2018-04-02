@@ -9,4 +9,10 @@ class StudentsModel extends PageModels
         $glyphs  = ['logout' => 'log-out'];
         parent::__construct($name, $primary,  $control, $glyphs, STUDENTROOT);
     }
+
+    public function GetMyStudentAccountInfo()
+    {
+        $session = new Session();
+        return $session->GetMyUserAccountInfo($_SESSION['userId']);
+    }
 }

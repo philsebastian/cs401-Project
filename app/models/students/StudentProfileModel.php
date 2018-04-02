@@ -9,8 +9,7 @@ class StudentProfileModel extends StudentsModel
 
     public function GetData()
     {
-        $session = new User();
-        $accountInfo = $session->GetMyUserAccountInfo($_SESSION['userId']);
+        $accountInfo = parent::GetMyStudentAccountInfo();
         return (array_merge(parent::GetData(), $accountInfo));
     }
 

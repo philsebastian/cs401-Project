@@ -3,12 +3,10 @@ session_start();
 
 class Models
 {
-    protected $Dao;
     protected $modelName;
 
     public function __construct($name)
     {
-        $this->Dao = new Dao();
         $this->modelName = $name;
     }
 
