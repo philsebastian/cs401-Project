@@ -109,7 +109,7 @@ class App
             unset($url[0]);
             $this->controller = $search . 'Account';
 
-            if(isset($url[1]) && $this->ControllerExists($search . strtolower($url[1])))
+            if(isset($url[1]) && $this->ControllerExists($search . ucfirst(strtolower($url[1]))))
             {
                 $controller = $url[1];
                 $this->controller = $search . $url[1];
