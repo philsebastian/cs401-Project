@@ -15,8 +15,6 @@ class App
 
             $url = $this->parseUrl();
 
-            print_r($url);
-
             if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
             {
                 Logger::LogTrace("App.__construct", "Routing to other pages: {$url[0]}");
@@ -30,7 +28,8 @@ class App
         }
         catch (Exception $ex)
         {
-            echo $ex->getMessage();
+            echo $ex->getMessage();            echo $ex->getMessage();
+            die();
             die();
         }
     }

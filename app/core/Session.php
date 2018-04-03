@@ -95,7 +95,7 @@ class Session
         }
         catch (Exception $ex)
         {
-            $_SESSION['errorMessage'] = "Error occurred in registration please try again";
+            $_SESSION['errorMessage'] = "Error occurred in registration. Please try again. Error: {$ex->getMessage}";
             $_SESSION['presets'] = $info;
             exit(header("Location: " . URLROOT . "signup/"));
         }
