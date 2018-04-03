@@ -55,8 +55,8 @@ class Login extends Controller
         }
         catch (Exception $ex)
         {
-            echo $ex->getMessage();
-            die();
+            Logger::LogError("LoginController.authenticate", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "login/"));
         }
 
     }

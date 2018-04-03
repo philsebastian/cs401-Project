@@ -21,6 +21,7 @@ class StudentsAccount extends StudentsController
         catch (Exception $ex)
         {
             Logger::LogError("StudentsAccount.Index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
 
     }

@@ -33,7 +33,10 @@ class Session
         }
         catch (Exception $ex)
         {
+            $_SESSION['errorMessage'] = "Incorrect email address or password. Please try again.";
+            $_SESSION['presets']['username'] = $_POST['username'];
             Logger::LogError("Session.validateLogin", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "login/"));
         }
 
     }
@@ -76,8 +79,8 @@ class Session
         }
         catch (Exception $ex)
         {
-            echo $ex->getMessage();
-            die();
+            Logger::LogError("Session.RedirectBasedOnRole", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
     }
 
@@ -97,6 +100,8 @@ class Session
         {
             $_SESSION['errorMessage'] = "Error occurred in registration. Please try again. Error: {$ex->getMessage}";
             $_SESSION['presets'] = $info;
+            Logger::LogError("Session.AddNewUser", "Error: {$ex->getMessage()}");
+
             exit(header("Location: " . URLROOT . "signup/"));
         }
     }

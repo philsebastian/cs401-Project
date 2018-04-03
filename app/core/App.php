@@ -28,9 +28,8 @@ class App
         }
         catch (Exception $ex)
         {
-            echo $ex->getMessage();            echo $ex->getMessage();
-            die();
-            die();
+            Logger::LogError("App.__construct", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
     }
 
@@ -43,9 +42,8 @@ class App
         }
         catch (Exception $ex)
         {
-            //Logger::LogError("App.GoToPage", "Error: {$ex->getMessage()}");
-            echo $ex->getMessage();
-            die();
+            Logger::LogError("App.GoToPage", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
 
     }
@@ -94,9 +92,8 @@ class App
         }
         catch (Exception $ex)
         {
-            //Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
-            echo $ex->getMessage();
-            die();
+            Logger::LogError("App..MainPages", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
 
     }
@@ -142,9 +139,8 @@ class App
         }
         catch (Exception $ex)
         {
-            //Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
-            echo $ex->getMessage();
-            die();
+            Logger::LogError("App.OtherPages", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
     }
 
