@@ -37,6 +37,7 @@ class App
     {
         try
         {
+            Logger::LogTrace("App.GoToPage", "Initializing controller and method.");
             $this->controller = new $this->controller();
             call_user_func_array([$this->controller, $this->method], array($this->params));
         }
@@ -102,6 +103,7 @@ class App
     {
         try
         {
+            Logger::LogTrace("App.OtherPages", "Starting parse of {$url[0]}.");
             $search = strtolower($url[0]);
             $search = ucfirst($search);
             unset($url[0]);
@@ -111,16 +113,19 @@ class App
             {
                 $controller = $url[1];
                 $this->controller = $search . $url[1];
+                Logger::LogTrace("App.OtherPages", "Controller based on url: {$this->controller}.");
                 unset($url[1]);
             }
             else
             {
+                Logger::LogTrace("App.OtherPages", "Re-routing to default landing of: {$search}.");
                 exit(header("Location: " . URLROOT . $search . '/Account'));
             }
 
             if(isset($url[2]) && method_exists($this->controller, $url[2]))
             {
                 $this->method = $url[2];
+                Logger::LogTrace("App.OtherPages", "Method based on url: {$this->method}.");
                 unset($url[2]);
             }
 
@@ -130,8 +135,11 @@ class App
             {
                 $this->params = array_values($url);
                 $_SESSION['params'] = $this->params;
+                Logger::LogDebug("App.OtherPages", "Parameters found. Controller: {$this->controller}, Method: {$this->method}, Parameters: {$this->params}");
+
                 $method = ($this->method != "index") ? $this->method : "";
 
+                Logger::LogTrace("App.OtherPages", "Re-routing to default landing of: {$this->controller}.");
                 exit(header("Location: " . URLROOT . $search . "/" . $controller . "/" . $method));
             }
 
