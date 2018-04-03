@@ -12,27 +12,44 @@ class Session
 
     public function validateLogin($username, $password)
     {
-        $query = $this->Dao->GetUserIdAndRole(['username' => $username, 'password' => $password]);
-        if (count($query) > 0)
+        try
         {
-            session_regenerate_id();
-            $_SESSION['username'] = $username;
-            $_SESSION['usernameId'] = $query[0]['ID'];
-            $_SESSION['role'] = $query[0]['permissionLevelId'];
+            $query = $this->Dao->GetUserIdAndRole(['username' => $username, 'password' => $password]);
+            if (count($query) > 0)
+            {
+                session_regenerate_id();
+                $_SESSION['username'] = $username;
+                $_SESSION['usernameId'] = $query[0]['ID'];
+                $_SESSION['role'] = $query[0]['permissionLevelId'];
 
-            $this->RedirectBasedOnRole();
+                $this->RedirectBasedOnRole();
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "Incorrect email address or password. Please try again.";
+                $_SESSION['presets']['username'] = $_POST['username'];
+                exit(header("Location: " . URLROOT . "login/"));
+            }
         }
-        else
+        catch (Exception $ex)
         {
-            $_SESSION['errorMessage'] = "Incorrect email address or password. Please try again.";
-            $_SESSION['presets']['username'] = $_POST['username'];
-            exit(header("Location: " . URLROOT . "login/"));
+            Logger::LogError("Session.validateLogin", "Error: {$ex->getMessage()}");
         }
+
     }
 
     public function GetMyUserAccountInfo()
     {
-        return $this->Dao->GetUserAccountInfo($_SESSION['usernameId']);
+        $retArray = [];
+        try
+        {
+            $retArray = $this->Dao->GetUserAccountInfo($_SESSION['usernameId']);
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Session.GetMyUserAccountInfo", "Error: {$ex->getMessage()}");
+        }
+        return $retArray;
     }
 
     public function RedirectBasedOnRole()
