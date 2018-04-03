@@ -9,96 +9,128 @@ class App
 
     public function __construct()
     {
+        Logger::LogTrace("App.__contruct", "App started.");
 
         $url = $this->parseUrl();
 
         if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
         {
+            Logger::LogTrace("App.__construct", "Routing to other pages: {$url[0]}");
             $url = $this->OtherPages($url);
         }
         else
         {
+            Logger::LogTrace("App.__construct", "Routing to main pages.");
             $url = $this->MainPages($url);
         }
     }
 
     private function GoToPage()
     {
-        $this->controller = new $this->controller();
-        call_user_func_array([$this->controller, $this->method], array($this->params));
+        try
+        {
+            $this->controller = new $this->controller();
+            call_user_func_array([$this->controller, $this->method], array($this->params));
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("App.GoToPage", "Error: {$ex->getMessage()}");
+        }
+
     }
 
     protected function MainPages(array $url)
     {
-        if(isset($url[0]) && file_exists(MAINCONTROLLERS . DS . $url[0] . '.php'))
+        try
         {
-            $this->controller = $url[0];
-            unset($url[0]);
+
+            if(isset($url[0]) && file_exists(MAINCONTROLLERS . DS . $url[0] . '.php'))
+            {
+                Logger::LogTrace("App.MainPages", "url[0]: {$url[0]}.");
+                $this->controller = $url[0];
+                unset($url[0]);
+            }
+            else
+            {
+                Logger::LogTrace("App.MainPages", "Fixing URL: " . print_r($url, true));
+                exit(header("Location: " . URLROOT . "home"));
+            }
+
+            if(isset($url[1]) && method_exists($this->controller, $url[1]))
+            {
+                Logger::LogTrace("App.MainPages", "url[1]: {$url[1]}.");
+                $this->method = $url[1];
+                unset($url[1]);
+            }
+
+            $this->params = [];
+
+            if(count($url) > 0)
+            {
+                $this->params = array_values($url);
+                Logger::LogDebug("App.MainPages", "Parameters found. Controller: {$this->controller}, Method: {$this->method}, Parameters: {$this->params}");
+
+                $_SESSION['params'] = $this->params;
+                $method = ($this->method != "index") ? $this->method : "";
+
+                Logger::LogTrace("App.MainPages", "Re-routing to default landing of: {$this->controller}.");
+                exit(header("Location: " . URLROOT . $this->controller . "/" . $method));
+            }
+
+            Logger::LogDebug("App.MainPages", "No parameters in URL. Controller: {$this->controller}, Method: {$this->method}" . ((isset($_SESSION['params']) ? "Parameters in session: " . print_r($_SESSION['params'], true) : "")));
+
+            $this->GoToPage();
         }
-        else
+        catch (Exception $ex)
         {
-            exit(header("Location: " . URLROOT . "home"));
+            Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
         }
 
-        if(isset($url[1]) && method_exists($this->controller, $url[1]))
-        {
-            $this->method = $url[1];
-            unset($url[1]);
-        }
-
-        $this->params = [];
-
-        if(count($url) > 0)
-        {
-            $this->params = array_values($url);
-            $_SESSION['params'] = $this->params;
-            $method = ($this->method != "index") ? $this->method : "";
-
-            exit(header("Location: " . URLROOT . $this->controller . "/" . $method));
-
-        }
-
-        $this->GoToPage();
     }
 
     protected function OtherPages(array $url)
     {
-        $search = strtolower($url[0]);
-        $search = ucfirst($search);
-        unset($url[0]);
-        $this->controller = $search . 'Account';
-
-
-
-        if(isset($url[1]) && $this->ControllerExists($search . strtolower($url[1])))
+        try
         {
-            $controller = $url[1];
-            $this->controller = $search . $url[1];
-            unset($url[1]);
+            $search = strtolower($url[0]);
+            $search = ucfirst($search);
+            unset($url[0]);
+            $this->controller = $search . 'Account';
+
+            if(isset($url[1]) && $this->ControllerExists($search . strtolower($url[1])))
+            {
+                $controller = $url[1];
+                $this->controller = $search . $url[1];
+                unset($url[1]);
+            }
+            else
+            {
+                exit(header("Location: " . URLROOT . $search . '/Account'));
+            }
+
+            if(isset($url[2]) && method_exists($this->controller, $url[2]))
+            {
+                $this->method = $url[2];
+                unset($url[2]);
+            }
+
+            $this->params = [];
+
+            if(count($url) > 0)
+            {
+                $this->params = array_values($url);
+                $_SESSION['params'] = $this->params;
+                $method = ($this->method != "index") ? $this->method : "";
+
+                exit(header("Location: " . URLROOT . $search . "/" . $controller . "/" . $method));
+            }
+
+            $this->GoToPage();
         }
-        else
+        catch (Exception $ex)
         {
-            exit(header("Location: " . URLROOT . $search . '/Account'));
+            Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
         }
-
-        if(isset($url[2]) && method_exists($this->controller, $url[2]))
-        {
-            $this->method = $url[2];
-            unset($url[2]);
-        }
-
-        $this->params = [];
-
-        if(count($url) > 0)
-        {
-            $this->params = array_values($url);
-            $_SESSION['params'] = $this->params;
-            $method = ($this->method != "index") ? $this->method : "";
-
-            exit(header("Location: " . URLROOT . $search . "/" . $controller . "/" . $method));
-        }
-
-        $this->GoToPage();
     }
 
     protected function parseUrl()

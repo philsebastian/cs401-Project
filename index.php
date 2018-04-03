@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ERROR);
 
+define(LOGLEVEL, 1);
+
 define("NL", "\n");
 define("DT", "\t");
 define('DS', DIRECTORY_SEPARATOR);

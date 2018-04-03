@@ -4,15 +4,15 @@ session_start();
 class Dao
 {
 
-    //private $host = "localhost";
-    //private $db = "musicappdb";
-    //private $user = "mlApp";
-    //private $pass = "gIA41vz6qTzqA2Sv";
+    private $host = "localhost";
+    private $db = "musicappdb";
+    private $user = "mlApp";
+    private $pass = "gIA41vz6qTzqA2Sv";
 
-    private $host = "us-cdbr-iron-east-05.cleardb.net";
-    private $db = "heroku_8e75c2deadccfe3";
-    private $user = "b8094c43f3c6b3";
-    private $pass = "efe13701";
+    //private $host = "us-cdbr-iron-east-05.cleardb.net";
+    //private $db = "heroku_8e75c2deadccfe3";
+    //private $user = "b8094c43f3c6b3";
+    //private $pass = "efe13701";
 
     public function getConnection ()
     {
@@ -168,6 +168,17 @@ class Dao
         $q->execute();
         $results = $q->fetchAll();
         return $results['ID'];
+    }
+
+    public function LogMessage($severity, $location, $message)
+    {
+        $insert = "INSERT INTO serverLog (severity, location, message) VALUE (:severity, :location, :message);";
+        $conn = $this->getConnection();
+        $i = $conn->prepare($insert);
+        $i->bindParam(":severity", $severity);
+        $i->bindParam(":location", $location);
+        $i->bindParam(":message", $message);
+        $i->execute();
     }
 
 } // end Dao

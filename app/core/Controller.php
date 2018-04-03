@@ -8,11 +8,13 @@ class Controller
 
     public function __construct($name)
     {
+        Logger::LogTrace("Controller.__construct", "Contructing controller: {$name}");
         $this->name = $name;
     }
 
     protected function model($model)
     {
+        Logger::LogTrace("Controller.model", "Making model: {$model}");
         $this->data = new $model();
         return $this->data;
     }
@@ -22,6 +24,7 @@ class Controller
      */
     protected function GetData(array $contents = [])
     {
+        Logger::LogTrace("Controller.GetData", "Getting data. Contents size " . count($contents));
         $data = $this->data->GetData();
         if (count($contents) > 0)
         {
@@ -37,6 +40,7 @@ class Controller
      */
     protected function loadView($view, array $contents = [])
     {
+        Logger::LogTrace("Controller.loadView", "Loading {$view}");
         $data = $this->GetData($contents);   // data needed in the view
         ob_start();
 
@@ -45,6 +49,7 @@ class Controller
 
         $content = ob_get_contents();
         ob_end_clean();
+        Logger::LogDebug("Controller.loadView", "Content of view: {$content}");
         $this->content = $content;
     }
 

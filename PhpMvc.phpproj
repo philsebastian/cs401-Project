@@ -35,6 +35,7 @@
     <Compile Include="app\core\Controller.php" />
     <Compile Include="app\core\Builder.php" />
     <Compile Include="app\core\Dao.php" />
+    <Compile Include="app\core\Logger.php" />
     <Compile Include="app\core\Models.php" />
     <Compile Include="app\core\PageModels.php" />
     <Compile Include="app\core\Session.php" />
