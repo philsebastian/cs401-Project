@@ -48,7 +48,7 @@ class Dao
         $q->bindParam(":password", $params["password"]);
         $q->execute();
         $results = $q->fetchAll();
-        return $results;
+        return reset($results);
     }
 
     public function GetUserAccountInfo($userId)
@@ -76,7 +76,7 @@ class Dao
         $q->bindParam(":userId", $userId);
         $q->execute();
         $results = $q->fetchAll();
-        return $results;
+        return reset($results);
     }
 
     public function IsUsernameAvailable($username)
@@ -101,13 +101,13 @@ class Dao
         $i->bindParam(":username", $username);
         $i->execute();
 
-        $query = "SELECT usernames.ID FROM usernames WHERE username.username = :username AND username.inactivetime is null;";
+        $query = "SELECT usernames.ID FROM usernames WHERE usernames.username = :username AND usernames.inactivetime is null;";
         $q = $conn->prepare($query);
         $q->setFetchMode(PDO::FETCH_ASSOC);
         $q->bindParam(":username", $username);
         $q->execute();
         $results = $q->fetchAll();
-        return $results['ID'];
+        return $results[0]['ID'];
     }
 
     public function GetNewUserInfoId($usernameId, array $params)
@@ -131,7 +131,7 @@ class Dao
         $q->bindParam(":usernameId", $usernameId);
         $q->execute();
         $results = $q->fetchAll();
-        return $results['ID'];
+        return $results[0]['ID'];
     }
 
     public function GetNewPasswordId($usernameId, $password)
@@ -149,7 +149,7 @@ class Dao
         $q->bindParam(":usernameId", $usernameId);
         $q->execute();
         $results = $q->fetchAll();
-        return $results['ID'];
+        return $results[0]['ID'];
     }
 
     public function GetPermissionsId($usernameId, $permissionlevelId)
@@ -167,7 +167,7 @@ class Dao
         $q->bindParam(":usernameId", $usernameId);
         $q->execute();
         $results = $q->fetchAll();
-        return $results['ID'];
+        return $results[0]['ID'];
     }
 
     public function LogMessage($severity, $location, $message)
