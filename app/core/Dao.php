@@ -48,7 +48,7 @@ class Dao
         $q->bindParam(":password", $params["password"]);
         $q->execute();
         $results = $q->fetchAll();
-        return reset($results);
+        return $results[0];
     }
 
     public function GetUserAccountInfo($userId)
@@ -76,7 +76,7 @@ class Dao
         $q->bindParam(":userId", $userId);
         $q->execute();
         $results = $q->fetchAll();
-        return reset($results);
+        return $results[0];
     }
 
     public function IsUsernameAvailable($username)

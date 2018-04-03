@@ -64,11 +64,11 @@ class Session
                 switch ($_SESSION['role'])
                 {
                     case 1:
-                        exit(header("Location: " . URLROOT . "Students/Account/"));
+                        exit(header("Location: " . URLROOT . "students/account/"));
                     case 2:
-                        exit(header("Location: " . URLROOT . "Teachers/Account/"));
+                        exit(header("Location: " . URLROOT . "teachers/account/"));
                     case 3:
-                        exit(header("Location: " . URLROOT . "Students/Account/"));
+                        exit(header("Location: " . URLROOT . "students/account/"));
                 }
             }
             else

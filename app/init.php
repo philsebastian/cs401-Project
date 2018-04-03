@@ -29,6 +29,8 @@ define('STUDENTFOOTER', VIEWS . DS . 'students' . DS .'footer.php');
 define('TEACHERHEADER', VIEWS . DS . 'teachers' . DS .'header.php');
 define('TEACHERFOOTER', VIEWS . DS . 'teachers' . DS .'footer.php');
 
+require_once(CORE . DS . "Logger.php");
+require_once(CORE . DS . "Dao.php");
 require_once(CORE . DIRECTORY_SEPARATOR . 'Autoloader.php');
 
 $app = new App();

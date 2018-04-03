@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ERROR);
 
-define(LOGLEVEL, 1);
+define(LOGLEVEL, 3);
 
 define("NL", "\n");
 define("DT", "\t");
