@@ -17,8 +17,8 @@ class Session
         {
             session_regenerate_id();
             $_SESSION['username'] = $username;
-            $_SESSION['usernameId'] = $query['ID'];
-            $_SESSION['role'] = $query['permissionLevelId'];
+            $_SESSION['usernameId'] = $query[0]['ID'];
+            $_SESSION['role'] = $query[0]['permissionLevelId'];
 
             $this->RedirectBasedOnRole();
         }

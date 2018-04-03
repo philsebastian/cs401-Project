@@ -29,8 +29,6 @@ class Login extends Controller
 
     public function authenticate()
     {
-        echo "GOT HERE";
-        exit();
         if (isset($_POST['username']) && $_POST['username'] != "")
         {
             $username = $_POST['username'];
@@ -50,8 +48,6 @@ class Login extends Controller
             $_SESSION['presets']['username'] = $_POST['username'];
             exit(header("Location: " . URLROOT . "login/" ));
         }
-        echo "GOT HERE";
-        exit();
         $session = new Session();
         $session->validateLogin($username, $password);
     }
