@@ -10,12 +10,18 @@ class StudentsAccount extends StudentsController
 
     public function index()
     {
-        $content = array("students" . DS . "_profile");
+        try
+        {
+            $content = array("students" . DS . "_profile");
 
-
-        $this->model('StudentProfileModel');
-        $this->loadView(STUDENTCORE, $content);
-        echo $this->out();
+            $this->model('StudentProfileModel');
+            $this->loadView(STUDENTCORE, $content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("StudentsAccount.Index", "Error: {$ex->getMessage()}");
+        }
 
     }
 
