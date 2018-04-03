@@ -103,6 +103,8 @@ class App
     {
         try
         {
+            Logger::LogDebug("App.OtherPages", "url: " . print_r($url, true));
+
             Logger::LogTrace("App.OtherPages", "Starting parse of {$url[0]}.");
             $search = strtolower($url[0]);
             $search = ucfirst($search);
@@ -166,10 +168,13 @@ class App
     {
         if (file_exists(STUDENTSCONTROLLERS . DS . $name . '.php') || file_exists(TEACHERSCONTROLLERS . DS . $name . '.php'))
         {
+            Logger::LogDebug("App.ControllerExists", "Found controller: {$name}.");
+
             $result = true;
         }
         else
         {
+            Logger::LogDebug("App.ControllerExists", "Unable to find controller: {$name}.");
             $result = false;
         }
         return $result;
