@@ -54,14 +54,31 @@ class Session
 
     public function RedirectBasedOnRole()
     {
-        switch ($_SESSION['role'])
+        try
         {
-            case 1:
-                exit(header("Location: " . URLROOT . "students/account/"));
-            case 2:
-                exit(header("Location: " . URLROOT . "teachers/account/"));
-            case 3:
-                exit(header("Location: " . URLROOT . "students/account/"));
+            if (isset($_SESSION['role']))
+            {
+                switch ($_SESSION['role'])
+                {
+                    case 1:
+                        exit(header("Location: " . URLROOT . "students/account/"));
+                    case 2:
+                        exit(header("Location: " . URLROOT . "teachers/account/"));
+                    case 3:
+                        exit(header("Location: " . URLROOT . "students/account/"));
+                }
+            }
+            else
+            {
+                echo "FAILED";
+                die();
+            }
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Session.RedirectBasedOnRole", "Error: {$ex->getMessage()}");
+            echo "ERROR";
+            die();
         }
     }
 
