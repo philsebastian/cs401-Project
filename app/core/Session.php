@@ -70,14 +70,13 @@ class Session
             }
             else
             {
-                echo "FAILED";
+                echo "Role not set";
                 die();
             }
         }
         catch (Exception $ex)
         {
-            Logger::LogError("Session.RedirectBasedOnRole", "Error: {$ex->getMessage()}");
-            echo "ERROR";
+            echo $ex->getMessage();
             die();
         }
     }

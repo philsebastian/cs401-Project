@@ -29,27 +29,36 @@ class Login extends Controller
 
     public function authenticate()
     {
-        if (isset($_POST['username']) && $_POST['username'] != "")
+        try
         {
-            $username = $_POST['username'];
+            if (isset($_POST['username']) && $_POST['username'] != "")
+            {
+                $username = $_POST['username'];
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "Missing email address. Please enter username to proceed.";
+                exit(header("Location: " . URLROOT . "login/"));
+            }
+            if(isset($_POST['password']) && $_POST['password'] != "")
+            {
+                $password = $_POST['password'];
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "Missing password. Please enter password to proceed.";
+                $_SESSION['presets']['username'] = $_POST['username'];
+                exit(header("Location: " . URLROOT . "login/" ));
+            }
+            $session = new Session();
+            $session->validateLogin($username, $password);
         }
-        else
+        catch (Exception $ex)
         {
-            $_SESSION['errorMessage'] = "Missing email address. Please enter username to proceed.";
-            exit(header("Location: " . URLROOT . "login/"));
+            echo $ex->getMessage();
+            die();
         }
-        if(isset($_POST['password']) && $_POST['password'] != "")
-        {
-            $password = $_POST['password'];
-        }
-        else
-        {
-            $_SESSION['errorMessage'] = "Missing password. Please enter password to proceed.";
-            $_SESSION['presets']['username'] = $_POST['username'];
-            exit(header("Location: " . URLROOT . "login/" ));
-        }
-        $session = new Session();
-        $session->validateLogin($username, $password);
+
     }
 
 }

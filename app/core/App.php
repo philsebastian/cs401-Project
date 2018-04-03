@@ -9,19 +9,27 @@ class App
 
     public function __construct()
     {
-        Logger::LogTrace("App.__contruct", "App started.");
-
-        $url = $this->parseUrl();
-
-        if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
+        try
         {
-            Logger::LogTrace("App.__construct", "Routing to other pages: {$url[0]}");
-            $url = $this->OtherPages($url);
+            Logger::LogTrace("App.__contruct", "App started.");
+
+            $url = $this->parseUrl();
+
+            if(isset($url[0]) && (strtolower($url[0]) == 'students' || strtolower($url[0]) == 'teachers'))
+            {
+                Logger::LogTrace("App.__construct", "Routing to other pages: {$url[0]}");
+                $url = $this->OtherPages($url);
+            }
+            else
+            {
+                Logger::LogTrace("App.__construct", "Routing to main pages.");
+                $url = $this->MainPages($url);
+            }
         }
-        else
+        catch (Exception $ex)
         {
-            Logger::LogTrace("App.__construct", "Routing to main pages.");
-            $url = $this->MainPages($url);
+            echo $ex->getMessage();
+            die();
         }
     }
 
@@ -34,7 +42,9 @@ class App
         }
         catch (Exception $ex)
         {
-            Logger::LogError("App.GoToPage", "Error: {$ex->getMessage()}");
+            //Logger::LogError("App.GoToPage", "Error: {$ex->getMessage()}");
+            echo $ex->getMessage();
+            die();
         }
 
     }
@@ -83,7 +93,9 @@ class App
         }
         catch (Exception $ex)
         {
-            Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
+            //Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
+            echo $ex->getMessage();
+            die();
         }
 
     }
@@ -129,7 +141,9 @@ class App
         }
         catch (Exception $ex)
         {
-            Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
+            //Logger::LogError("App.MainPages", "Error: {$ex->getMessage()}");
+            echo $ex->getMessage();
+            die();
         }
     }
 
