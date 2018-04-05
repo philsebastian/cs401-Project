@@ -113,6 +113,9 @@ class Session
         {
             $errorString .= "An account with this email address is already in use. Use a different email address.<br>";
         }
+        if (!preg_match($info['password'], FILTERPASSWORD)) {
+            $errorString = "Invalid password format. Please choose a new password.<br>";
+        }
         if($_POST['password'] != $_POST['confpassword'])
         {
             $errorString .= "Password does not match. Please re-enter password.<br>";

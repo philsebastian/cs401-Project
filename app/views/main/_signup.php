@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col-sm-offset-2">
-                            <span class="help-block">Choose a password with at least one number, lower-case letter, and an upper-case letter.</span>
+                            <span class="help-block">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
                         </div>
                     </div>
                     <label class="grouplabel" for="address">Personal and Address Information</label>

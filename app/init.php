@@ -1,5 +1,7 @@
 <?php
 
+define('FILTERPASSWORD', "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}");
+
 define('DIR', __DIR__);
 define('CORE', DIR . DS . 'core');
 
