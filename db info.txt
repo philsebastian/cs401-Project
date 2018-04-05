@@ -1,0 +1,5 @@
+MySQL		
+Username:	mlApp
+Password:	gIA41vz6qTzqA2Sv
+
+mysql://b8094c43f3c6b3:efe13701@us-cdbr-iron-east-05.cleardb.net/heroku_8e75c2deadccfe3?reconnect=true

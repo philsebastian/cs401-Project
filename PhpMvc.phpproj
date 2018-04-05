@@ -58,6 +58,8 @@
     <Compile Include="app\views\main\_login.php" />
     <Compile Include="app\views\main\_signup.php" />
     <Compile Include="app\views\main\_randomcontents.php" />
+    <Compile Include="app\views\shared\_footer.php" />
+    <Compile Include="app\views\shared\_heading.php" />
     <Compile Include="app\views\students\_notebook.php" />
     <Compile Include="app\views\students\_teacherprofile.php" />
     <Compile Include="app\views\students\_appointments.php" />
@@ -79,6 +81,7 @@
     <Folder Include="app\models\students\" />
     <Folder Include="app\views\" />
     <Folder Include="app\views\main\" />
+    <Folder Include="app\views\shared\" />
     <Folder Include="app\views\teachers\" />
     <Folder Include="app\views\students\" />
     <Folder Include="common\" />
@@ -96,6 +99,8 @@
     <Content Include="common\css\general.css" />
     <Content Include="common\css\jquery-ui.css" />
     <Content Include="common\css\jquery-ui.structure.css" />
+    <Content Include="common\css\tile.css" />
+    <Content Include="common\javascript\tile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
