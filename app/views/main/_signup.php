@@ -58,7 +58,7 @@
                     <div name="credentials" class="well">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="username">Email address:</label>
-                            <div class="col-xs-3">
+                            <div class="col-xs-5">
                                 <input type="email" name="username" class="form-control" value="<?= $data['username'] ?>" />
                             </div>
                         </div>
@@ -67,12 +67,13 @@
                             <div class="col-xs-3">
                                 <input type="password" name="password" class="form-control" />
                             </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-sm-2" for="password">Confirm Password:</label>
                             <div class="col-xs-3">
                                 <input type="password" name="confpassword" class="form-control" />
                             </div>
+                        </div>
+                        <div class="col-sm-offset-2">
+                            <span class="help-block">Choose a password with at least one number, lower-case letter, and an upper-case letter.</span>
                         </div>
                     </div>
                     <label class="grouplabel" for="address">Personal and Address Information</label>
@@ -83,16 +84,14 @@
                             <div class="col-xs-3">
                                 <input type="text" name="firstname" class="form-control" value="<?= $data['firstname'] ?>" />
                             </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-sm-2" for="street">Last Name:</label>
-                            <div class="col-xs-3">
+                            <div class="col-xs-4">
                                 <input type="text" name="lastname" class="form-control" value="<?= $data['lastname'] ?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="street">Street address:</label>
-                            <div class="col-xs-3">
+                            <div class="col-xs-9">
                                 <input type="text" name="street" class="form-control" value="<?= $data['street'] ?>" />
                             </div>
                         </div>
@@ -101,19 +100,15 @@
                             <div class="col-xs-3">
                                 <input type="text" name="city" class="form-control" value="<?= $data['city'] ?>" />
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="state">State:</label>
-                            <div class="col-xs-3">
+                            <label class="control-label col-sm-1" for="state">State:</label>
+                            <div class="col-xs-1">
                                 <input type="text" name="state" class="form-control" value="<?= $data['state'] ?>" />
                             </div>
-                        </div>
-                        <div class="form-group">
                             <label class="control-label col-sm-2" for="zip">Zip Code:</label>
-                            <div class="col-xs-3">
+                            <div class="col-xs-2">
                                 <input type="number" name="zip" class="form-control" value="<?= $data['zip'] ?>" />
                             </div>
-                        </div>
+                        </div>                      
                     </div>
 
                     <div class="form-group">

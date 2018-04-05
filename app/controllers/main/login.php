@@ -19,9 +19,8 @@ class Login extends Controller
         }
         else
         {
-            $content = array("main" . DS . "_login");
             $this->model('LoginModel');
-            $this->loadView(MAINCORE, $content);
+            $this->loadView(MAINCORE);
             echo $this->out();
         }
 

@@ -9,21 +9,23 @@ class SignupModel extends MainModel
 
     public function GetData()
     {
+        $data = parent::GetData();
+
         $session = new Session();
         $permissions = ["permissions" => $session->GetPermissionLevels()];
+        $data = array_merge($data, $permissions);
+
+        $content = array("contents" => ["main" . DS . "_signup"]);
+        $data = array_merge($data, $content);
 
         if (isset($_SESSION['presets']))
         {
-            $username = $_SESSION['presets'];
+            $userinfo = $_SESSION['presets'];
             unset($_SESSION['presets']);
-            $return = array_merge($username, parent::GetData());
-            $return = array_merge($return, $permissions);
-        }
-        else
-        {
-            $return = array_merge(parent::GetData(), $permissions);
+            $data = array_merge($data, $userinfo);
         }
 
-        return $return;
+        return $data;
     }
+
 }

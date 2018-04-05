@@ -22,14 +22,10 @@ class Controller
     /**
      * @return array data passed to the view
      */
-    protected function GetData(array $contents = [])
+    protected function GetData()
     {
-        Logger::LogTrace("Controller.GetData", "Getting data. Contents size " . count($contents));
         $data = $this->data->GetData();
-        if (count($contents) > 0)
-        {
-            $data = array_merge($data, ['contents' => $contents]);
-        }
+        Logger::LogTrace("Controller.GetData", "Getting data. Contents size " . count($data));
         return $data;
     }
 
@@ -38,10 +34,10 @@ class Controller
      * @param  array  $views an array of views to be loaded
      * @return string the compiled view
      */
-    protected function loadView($view, array $contents = [])
+    protected function loadView($view)
     {
         Logger::LogTrace("Controller.loadView", "Loading {$view}");
-        $data = $this->GetData($contents);   // data needed in the view
+        $data = $this->GetData();   // data needed in the view
         ob_start();
 
         $view_file = VIEWS . DS . $view . '.php';
@@ -60,17 +56,6 @@ class Controller
     public function out()
     {
         return $this->content;
-    }
-
-    public function GetRandomContent()
-    {
-        $content = array("main" . DS . "_randomcontents");
-        $int = rand(0, 10);
-        for($i = 0; $i < $int; $i++)
-        {
-            array_push($content, "main" . DS . "_randomcontents");
-        }
-        return $content;
     }
 
     protected function Session()

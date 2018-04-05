@@ -24,4 +24,15 @@ class PageModels extends Models
         $data = array_merge(parent::GetData(), $headingLinks);
         return $data;
     }
+
+    public function GetRandomContent()
+    {
+        $content = array("main" . DS . "_randomcontents");
+        $int = rand(0, 10);
+        for($i = 0; $i < $int; $i++)
+        {
+            array_push($content, "main" . DS . "_randomcontents");
+        }
+        return $content;
+    }
 }

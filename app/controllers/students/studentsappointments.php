@@ -10,9 +10,8 @@ class StudentsAppointments extends StudentsController
 
     public function index()
     {
-        $content = array("students" . DS . "_appointments");
         $this->model('StudentAppointmentModel');
-        $this->loadView(STUDENTCORE, $content);
+        $this->loadView(STUDENTCORE);
         echo $this->out();
     }
 

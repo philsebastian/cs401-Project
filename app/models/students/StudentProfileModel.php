@@ -9,8 +9,13 @@ class StudentProfileModel extends StudentsModel
 
     public function GetData()
     {
+        $data = parent::GetData();
+        $content = array('contents' => ["students" . DS . "_profile"]);
         $accountInfo = parent::GetMyStudentAccountInfo();
-        return (array_merge(parent::GetData(), $accountInfo));
-    }
 
+        $data = array_merge($data, $content);
+        $data = array_merge($data, $accountInfo);
+
+        return $data;
+    }
 }

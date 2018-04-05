@@ -12,10 +12,7 @@ class Home extends Controller
     public function index()
     {
         $this->model('HomeModel');
-
-        $content = $this->GetRandomContent();
-        $this->loadView(MAINCORE, $content);
-
+        $this->loadView(MAINCORE);
         echo $this->out();
     }
 

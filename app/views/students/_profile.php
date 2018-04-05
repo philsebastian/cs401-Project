@@ -16,24 +16,21 @@
                 </div>
             </div>
         </div>
-        <label class="grouplabel" for="address">Address Information</label>
+        <label class="grouplabel" for="address">Personal and Address Information</label>
 
-        <div name="name" class="well">
+        <div name="address" class="well">
             <div class="form-group">
-                <label class="control-label col-sm-2" for="firstname">First Name:</label>
+                <label class="control-label col-sm-2" for="street">First Name:</label>
                 <div class="col-xs-3">
                     <input type="text" name="firstname" class="form-control" value="<?= $data['firstname'] ?>" />
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="lastname">Last Name:</label>
+                <label class="control-label col-sm-2" for="street">Last Name:</label>
                 <div class="col-xs-3">
-                    <input type="text" name="city" class="form-control" value="<?= $data['lastname'] ?>" />
+                    <input type="text" name="lastname" class="form-control" value="<?= $data['lastname'] ?>" />
                 </div>
             </div>
-        </div>
-
-        <div name="address" class="well">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="street">Street address:</label>
                 <div class="col-xs-3">

@@ -11,9 +11,8 @@ class Signup extends Controller
 
     public function index()
     {
-        $content = array("main" . DS . "_signup");
         $this->model('SignupModel');
-        $this->loadView(MAINCORE, $content);
+        $this->loadView(MAINCORE);
         echo $this->out();
     }
 

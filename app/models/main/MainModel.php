@@ -10,5 +10,4 @@ class MainModel extends PageModels
         $glyphs  = ['signup' => 'user', 'login' => 'log-in'];
         parent::__construct($name, $primary,  $control, $glyphs, URLROOT);
     }
-
 }

@@ -10,9 +10,8 @@ class studentsnotebook extends StudentsController
 
     public function index()
     {
-        $content = array("students" . DS . "_notebook");
         $this->model('StudentNotebookModel');
-        $this->loadView(STUDENTCORE, $content);
+        $this->loadView();
         echo $this->out();
     }
 

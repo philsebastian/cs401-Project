@@ -12,10 +12,9 @@ class StudentsAccount extends StudentsController
     {
         try
         {
-            $content = array("students" . DS . "_profile");
 
             $this->model('StudentProfileModel');
-            $this->loadView(STUDENTCORE, $content);
+            $this->loadView();
             echo $this->out();
         }
         catch (Exception $ex)
@@ -43,9 +42,7 @@ class StudentsAccount extends StudentsController
 
     public function myteacher()
     {
-        $controller = new studentsteacher();
-        $controller->profile();
-
+        $this->model('StudentTeacherModel');
     }
 
 }

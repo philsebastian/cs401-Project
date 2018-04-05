@@ -6,5 +6,12 @@ class Contact extends MainModel
     {
         parent::__construct('contact');
     }
+    public function GetData()
+    {
+        $data = parent::GetData();
+        $content = array('contents' => $this->GetRandomContent());
+        $data = array_merge($data, $content);
 
+        return $data;
+    }
 }
