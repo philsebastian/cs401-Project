@@ -37,7 +37,13 @@ class StudentsAccount extends StudentsController
 
     public function update()
     {
+        echo "Update";
         // Submit changes here and redirect back to student/account/
+    }
+
+    public function reset()
+    {
+        echo "Reset";
     }
 
     public function myteacher()

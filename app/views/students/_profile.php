@@ -1,67 +1,113 @@
-<div class="container-fluid">
-    <h3 class="text-center">
-        Account Information
-    </h3>
-    <form class="form-horizontal" name="signupForm" action="<?= URLROOT ?>students/account/update" method="POST">
-        <label class="grouplabel" for="credentials">
-            Email and Password
-        </label>
-        <div name="credentials" class="well">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="username">Email address:</label>
-                <div class="col-xs-3">
-                    <p name="username" class="form-control-static">
-                        <?= $data['username']?>
-                    </p>
+
+<div class="contain">
+    <?php
+    if (isset($_SESSION['errorMessage']))
+    {
+        $message = "<div class=\"alert alert-danger\">{$_SESSION['errorMessage']}</div>";
+        unset($_SESSION['errorMessage']);
+        echo $message;
+    }
+    ?>
+    <label class="grouplabel" for="account">Account Information</label>
+    <div name="account" class="container-well">
+        <div class="form-row">
+            <div class="col-15">
+                <label for="username">Email address:</label>
+            </div>
+            <div class="col-50">
+                <label class="softlabel" name="username">
+                    <?= $data['username']?>
+                </label>
+            </div>
+        </div>
+    </div>
+    <form name="resetpassword" action="<?= STUDENTROOT ?>account/reset/" method="POST">
+        <label class="grouplabel" for="credentials">Change Password</label>
+        <div name="credentials" class="container-well">
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="password">New Password:</label>
+                </div>
+                <div class="col-50">
+                    <input type="password" name="password" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="password">Confirm Password:</label>
+                </div>
+                <div class="col-50">
+                    <input type="password" name="confpassword" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-15"></div>
+                <div class="col-50">
+                    <span class="help-block">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
                 </div>
             </div>
         </div>
+        <div class="form-row row-space">
+            <div class="col-15">
+                <button name="reset" type="submit" class="btn btn-default">Change password</button>
+            </div>
+        </div>
+    </form>
+    <form name="update" action="<?= STUDENTROOT ?>account/update/" method="POST">
         <label class="grouplabel" for="address">Personal and Address Information</label>
-
-        <div name="address" class="well">
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="street">First Name:</label>
-                <div class="col-xs-3">
-                    <input type="text" name="firstname" class="form-control" value="<?= $data['firstname'] ?>" />
+        <div name="address" class="container-well">
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="street">First Name:</label>
+                </div>
+                <div class="col-50">
+                    <input type="text" name="firstname" value="<?= $data['firstname'] ?>" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="street">Last Name:</label>
-                <div class="col-xs-3">
-                    <input type="text" name="lastname" class="form-control" value="<?= $data['lastname'] ?>" />
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="street">Last Name:</label>
+                </div>
+                <div class="col-50">
+                    <input type="text" name="lastname" value="<?= $data['lastname'] ?>" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="street">Street address:</label>
-                <div class="col-xs-3">
-                    <input type="text" name="street" class="form-control" value="<?= $data['street'] ?>" />
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="street">Street address:</label>
+                </div>
+                <div class="col-50">
+                    <input type="text" name="street" value="<?= $data['street'] ?>" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="city">City:</label>
-                <div class="col-xs-3">
-                    <input type="text" name="city" class="form-control" value="<?= $data['city'] ?>" />
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="city">City:</label>
+                </div>
+                <div class="col-50">
+                    <input type="text" name="city" value="<?= $data['city'] ?>" />
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="state">State:</label>
-                <div class="col-xs-3">
-                    <input type="text" name="state" class="form-control" value="<?= $data['state'] ?>" />
+            <div class="form-row">
+                <div class="col-15">
+                    <label for="state">State:</label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-sm-2" for="zip">Zip Code:</label>
-                <div class="col-xs-3">
-                    <input type="number" name="zip" class="form-control" value="<?= $data['zip'] ?>" />
+                <div class="col-10">
+                    <input type="text" name="state" value="<?= $data['state'] ?>" />
+                </div>
+                <div class="col-10"></div>
+                <div class="col-15">
+                    <label for="zip">Zip Code:</label>
+                </div>
+                <div class="col-15">
+                    <input type="number" name="zip" value="<?= $data['zip'] ?>" />
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-xs-1">
-                <button name="submit" type="submit" class="btn btn-default">Update</button>
+        <div class="form-row row-space">
+            <div class="col-15">
+                <button name="submit" type="submit" class="btn btn-default">Update Info</button>
             </div>
         </div>
-
     </form>
 </div>

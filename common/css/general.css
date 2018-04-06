@@ -64,6 +64,10 @@ h3.space-after
     margin-bottom: 25px;
 }
 
+.softlabel{
+    font-weight: normal;
+}
+
 /*********************************
 
     HEADING CSS BELOW
