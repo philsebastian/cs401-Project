@@ -14,12 +14,6 @@ session_start();
     <?php echo Builder::GetHeading($data) ?>
     <div class="primarydiv">
         <div class="contents">
-            <div class="contents-tile">
-                <h5>
-                    Clickable Advance
-                </h5>
-                <p class="advance clickable">0</p>
-            </div>
             <?php
             for($i = 0; $i < count($data['contents']); $i++)
             {
