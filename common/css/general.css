@@ -90,6 +90,7 @@ h3.space-after
             color: black;
         }
 
+
 a.active {
     background-color: #9e149e;
     color: white;
@@ -135,6 +136,10 @@ a.active {
             display: block;
             text-align: left;
         }
+}
+
+a.active span.glyphicon {
+    color: white !important;
 }
 
 .glyphicon {
