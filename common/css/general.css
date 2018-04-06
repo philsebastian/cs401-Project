@@ -132,6 +132,10 @@ a.active {
         }
 }
 
+.glyphicon {
+    color: #9e149e;
+}
+
 
 .navtopright {
     float: right !important
