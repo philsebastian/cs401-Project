@@ -17,18 +17,36 @@ class StudentsModel extends PageModels
     {
         $data = parent::GetData($content);
 
-        $part = $content['view'];
-        $part = ucwords($part);
-        $part = str_replace(' ', '', $part);
-        $searchMethod = "GetMy{$part}Info";
-        $displayInfo = self::$searchMethod();
-
-        $data = array_merge($data, $displayInfo);
+        if(isset($content['view']))
+        {
+            $displayInfo = self::GetViewData($content);
+            $data = array_merge($data, $displayInfo);
+        }
 
         return $data;
     }
 
-    protected function GetMyProfileInfo()
+    private function GetViewData($content)
+    {
+        $displayInfo = [];
+        try
+        {
+            $part = $content['view'];
+            $part = ucwords($part);
+            $part = str_replace(' ', '', $part);
+            $searchMethod = "Get{$part}Info";
+            $displayInfo = self::$searchMethod();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("StudentsModel.GetViewData", "Error: {$ex->getMessage()}");
+            $_SESSION['errorMessage'] = "Error retrieving data. Please try again.";
+            exit(header("Location: " . STUDENTROOT));
+        }
+        return $displayInfo;
+    }
+
+    protected function GetProfileInfo()
     {
         //$session = new Session();
         return $this->session->GetMyUserAccountInfo($_SESSION['usernameId']);
@@ -38,11 +56,11 @@ class StudentsModel extends PageModels
         //return $this->session->GetMyTeachers($_SESSION['usernameId']);
         return ['myteacher' => []];
     }
-    protected function GetMyPaymentAccountInfo() // PHIL TODO -- to implement
+    protected function GetPaymentAccountInfo() // PHIL TODO -- to implement
     {
         return ['paymentaccount' => []];
     }
-    protected function GetMyPaymentHistoryInfo() // PHIL TODO -- to implement
+    protected function GetPaymentHistoryInfo() // PHIL TODO -- to implement
     {
         return ['paymenthistory' => []];
     }
