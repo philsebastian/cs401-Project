@@ -9,11 +9,9 @@ class LoginModel extends MainModel
         parent::__construct('login');
     }
 
-    public function GetData()
+    public function GetData($content)
     {
-        $data = parent::GetData();
-        $content = array('contents' => ["main" . DS . "_login"]);
-        $data = array_merge($data, $content);
+        $data = parent::GetData($content);
 
         if (isset($_SESSION['presets']['username']))
         {

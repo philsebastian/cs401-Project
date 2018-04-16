@@ -29,7 +29,10 @@
                     <label for="password">New Password:</label>
                 </div>
                 <div class="col-50">
-                    <input type="password" name="password" />
+                    <div class="inner-addon right-addon">
+                        <span class="match glyphicon"></span>
+                        <input type="password" name="password" class="confirm" onchange="checkPasswordMatch();" />
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -37,13 +40,17 @@
                     <label for="password">Confirm Password:</label>
                 </div>
                 <div class="col-50">
-                    <input type="password" name="confpassword" />
+                    <div class="inner-addon right-addon">
+                        <span class="match glyphicon"></span>
+                        <input type="password" name="confpassword" class="confirm" disabled onchange="checkPasswordMatch();" />
+                    </div>
                 </div>
+
             </div>
             <div class="form-row">
                 <div class="col-15"></div>
                 <div class="col-50">
-                    <span class="help-block">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
+                    <span id="passwordHelp" class="help-block alert">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
                 </div>
             </div>
         </div>
@@ -61,7 +68,7 @@
                     <label for="street">First Name:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="firstname" value="<?= $data['firstname'] ?>" />
+                    <input type="text" name="firstname" value="<?= htmlspecialchars($data['firstname']) ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -69,7 +76,7 @@
                     <label for="street">Last Name:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="lastname" value="<?= $data['lastname'] ?>" />
+                    <input type="text" name="lastname" value="<?= htmlspecialchars($data['lastname']) ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -77,7 +84,7 @@
                     <label for="street">Street address:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="street" value="<?= $data['street'] ?>" />
+                    <input type="text" name="street" value="<?= htmlspecialchars($data['street']) ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -85,7 +92,7 @@
                     <label for="city">City:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="city" value="<?= $data['city'] ?>" />
+                    <input type="text" name="city" value="<?= htmlspecialchars($data['city']) ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -93,14 +100,14 @@
                     <label for="state">State:</label>
                 </div>
                 <div class="col-10">
-                    <input type="text" name="state" value="<?= $data['state'] ?>" />
+                    <input type="text" name="state" value="<?= htmlspecialchars($data['state']) ?>" />
                 </div>
                 <div class="col-10"></div>
                 <div class="col-15">
                     <label for="zip">Zip Code:</label>
                 </div>
                 <div class="col-15">
-                    <input type="number" name="zip" value="<?= $data['zip'] ?>" />
+                    <input type="number" name="zip" value="<?= htmlspecialchars($data['zip']) ?>" />
                 </div>
             </div>
         </div>

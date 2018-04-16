@@ -72,7 +72,10 @@ class Builder
         return Builder::IncludePartialView("shared" . DS . "_heading", $data);
     }
 
-
+    public static function GetNavigation(array $data)
+    {
+        return Builder::IncludePartialView("shared" . DS . "_secondarynavigation", $data);
+    }
 }
 
 ?>

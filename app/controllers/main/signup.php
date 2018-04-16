@@ -11,21 +11,40 @@ class Signup extends Controller
 
     public function index()
     {
-        $this->model('SignupModel');
-        $this->loadView(MAINCORE);
-        echo $this->out();
+        try
+        {
+            $content = array("contents" => ["main" . DS . "_signup"]);
+
+            $this->model('SignupModel');
+            $this->loadView(MAINCORE, $content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Signup.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
     public function addnew()
     {
-        if (isset($_POST))
+        try
         {
-            $session = new Session();
-            $session->AddNewUser($_POST);
+            if (isset($_POST))
+            {
+                $session = new Session();
+                $session->AddNewUser($_POST);
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "No information submitted. Please fill out form.";
+                exit(header("Location: " . URLROOT . "signup/"));
+            }
         }
-        else
+        catch (Exception $ex)
         {
-            $_SESSION['errorMessage'] = "No information submitted. Please fill out form.";
+            Logger::LogError("Signup.addnew", "Error: {$ex->getMessage()}");
+            $_SESSION['errorMessage'] = "Error during signup process. Please try again.";
             exit(header("Location: " . URLROOT . "signup/"));
         }
     }

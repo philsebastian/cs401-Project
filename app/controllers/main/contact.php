@@ -11,9 +11,18 @@ class Contact extends Controller
 
     public function index()
     {
-        $this->model('ContactModel');
-        $this->loadView(MAINCORE);
-        echo $this->out();
+        try
+        {
+            $this->model('ContactModel');
+            $content = array('contents' => $this->data->GetRandomContent());
+            $this->loadView(MAINCORE, $content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Contact.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
 }

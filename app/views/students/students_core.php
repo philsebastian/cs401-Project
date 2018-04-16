@@ -10,8 +10,16 @@ session_start();
     <link rel="shortcut icon" type="image/png" href="<?php echo URLROOT . COMMON . '/' ?>favicon.png" /><?php echo Builder::GetCssAndJs(); ?>
 </head>
 <body>
-    <?php echo Builder::GetHeading($data) ?>
+    <?php 
+    echo Builder::GetHeading($data);   
+    ?>
     <div class="primarydiv">
+        <?php
+        if (isset($data['tabs']))
+        {
+            echo Builder::GetNavigation($data);
+        }
+        ?>
         <div class="contents">
             <?php
             for($i = 0; $i < count($data['contents']); $i++)
@@ -20,6 +28,7 @@ session_start();
             }
             ?>
         </div>
-    </div><?php echo Builder::GetCommonFooter(); ?>
+    </div>
+    <?php echo Builder::GetCommonFooter(); ?>
 </body>
 </html>

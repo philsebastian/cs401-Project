@@ -17,9 +17,9 @@ class StudentsController extends Controller
         }
     }
 
-    public function loadView()
+    public function loadView($content)
     {
-        parent::loadView(STUDENTCORE);
+        parent::loadView(STUDENTCORE, $content);
     }
 
 }

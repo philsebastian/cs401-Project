@@ -18,10 +18,10 @@ class PageModels extends Models
         parent::__construct($name);
     }
 
-    public function GetData()
+    public function GetData($content)
     {
         $headingLinks = ['primarynav' => $this->primarynav, 'controlnav' => $this->controlnav, 'glyphs' => $this->glyphs, 'rootpath' => $this->rootpath];
-        $data = array_merge(parent::GetData(), $headingLinks);
+        $data = array_merge(parent::GetData($content), $headingLinks);
         return $data;
     }
 

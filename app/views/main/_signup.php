@@ -63,7 +63,10 @@
                     <label for="password">Password:</label>
                 </div>
                 <div class="col-50">
-                    <input type="password" name="password" />
+                    <div class="inner-addon right-addon">
+                        <span class="match glyphicon"></span>
+                        <input type="password" name="password" class="confirm" onchange="checkPasswordMatch();" />
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -71,13 +74,17 @@
                     <label for="password">Confirm Password:</label>
                 </div>
                 <div class="col-50">
-                    <input type="password" name="confpassword" />
+                    <div class="inner-addon right-addon">
+                        <span class="match glyphicon"></span>
+                        <input type="password" name="confpassword" class="confirm" disabled onchange="checkPasswordMatch();"/>
+                    </div>
                 </div>
+
             </div>
             <div class="form-row">
                 <div class="col-15"></div>
                 <div class="col-50">
-                    <span class="help-block">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
+                    <span id="passwordHelp" class="help-block alert">Passwords need to contain at least one number, one lower-case letter, one upper-case letter, one special character, and be at least eight characters long.</span>
                 </div>
             </div>
         </div>

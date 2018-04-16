@@ -8,12 +8,20 @@ class StudentsTeacher extends StudentsController
         parent::__construct("student teacher");
     }
 
-    public function profile()
+    public function index()
     {
-        $content = array("students" . DS . "_teacherprofile");
-        $this->model('StudentTeacherModel');
-        $this->loadView(STUDENTCORE, $content);
-        echo $this->out();
+        try
+        {
+            $content = array('contents' => ["students" . DS . "_teacherprofile"]);
+            $this->model('StudentTeacherModel');
+            $this->loadView($content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("StudentsTeacher.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
     public function find()

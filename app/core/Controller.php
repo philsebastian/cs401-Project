@@ -22,9 +22,9 @@ class Controller
     /**
      * @return array data passed to the view
      */
-    protected function GetData()
+    protected function GetData($content)
     {
-        $data = $this->data->GetData();
+        $data = $this->data->GetData($content);
         Logger::LogTrace("Controller.GetData", "Getting data. Contents size " . count($data));
         return $data;
     }
@@ -34,10 +34,10 @@ class Controller
      * @param  array  $views an array of views to be loaded
      * @return string the compiled view
      */
-    protected function loadView($view)
+    protected function loadView($view, $content = [])
     {
         Logger::LogTrace("Controller.loadView", "Loading {$view}");
-        $data = $this->GetData();   // data needed in the view
+        $data = $this->GetData($content);   // data needed in the view
         ob_start();
 
         $view_file = VIEWS . DS . $view . '.php';
@@ -56,10 +56,5 @@ class Controller
     public function out()
     {
         return $this->content;
-    }
-
-    protected function Session()
-    {
-        return $this->session;
     }
 }

@@ -12,18 +12,26 @@ class Login extends Controller
 
     public function index()
     {
-        if(isset($_SESSION['role']))
+        try
         {
-            $session = new Session();
-            $session->RedirectBasedOnRole();
+            if(isset($_SESSION['role']))
+            {
+                $session = new Session();
+                $session->RedirectBasedOnRole();
+            }
+            else
+            {
+                $content = array('contents' => ["main" . DS . "_login"]);
+                $this->model('LoginModel');
+                $this->loadView(MAINCORE, $content);
+                echo $this->out();
+            }
         }
-        else
+        catch (Exception $ex)
         {
-            $this->model('LoginModel');
-            $this->loadView(MAINCORE);
-            echo $this->out();
+            Logger::LogError("Login.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
         }
-
     }
 
     public function authenticate()
@@ -54,7 +62,7 @@ class Login extends Controller
         }
         catch (Exception $ex)
         {
-            Logger::LogError("LoginController.authenticate", "Error: {$ex->getMessage()}");
+            Logger::LogError("Login.authenticate", "Error: {$ex->getMessage()}");
             exit(header("Location: " . URLROOT . "login/"));
         }
 

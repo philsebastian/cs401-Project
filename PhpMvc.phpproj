@@ -60,6 +60,8 @@
     <Compile Include="app\views\main\_randomcontents.php" />
     <Compile Include="app\views\shared\_footer.php" />
     <Compile Include="app\views\shared\_heading.php" />
+    <Compile Include="app\views\shared\_secondarynavigation.php" />
+    <Compile Include="app\views\students\_payments.php" />
     <Compile Include="app\views\students\_notebook.php" />
     <Compile Include="app\views\students\_teacherprofile.php" />
     <Compile Include="app\views\students\_appointments.php" />

@@ -4,6 +4,7 @@ session_start();
 class Session
 {
     private $Dao;
+    private $salt = "s@LT!ngA11d4th!n85";
 
     public function __construct()
     {
@@ -12,9 +13,10 @@ class Session
 
     public function validateLogin($username, $password)
     {
+        $hashedPassword = hash("sha256", $password . $this->salt);
         try
         {
-            $query = $this->Dao->GetUserIdAndRole(['username' => $username, 'password' => $password]);
+            $query = $this->Dao->GetUserIdAndRole(['username' => $username, 'password' => $hashedPassword]);
             if (count($query) > 0)
             {
                 session_regenerate_id();
@@ -91,7 +93,10 @@ class Session
             $this->CheckFields($info);
             $usernameId = $this->Dao->GetNewUsernameId($info['username']);
             $userInfoId = $this->Dao->GetNewUserInfoId($usernameId, $info);
-            $passId = $this->Dao->GetNewPasswordId($usernameId, $info['password']);
+
+            $hashedPassword = hash("sha256", $info['password'] . $this->salt);
+
+            $passId = $this->Dao->GetNewPasswordId($usernameId, $hashedPassword);
             $permissionId = $this->Dao->GetPermissionsId($usernameId, $info['permissionlevel']);
             $_SESSION['successMessage'] = "Registration successful. Please sign in.";
             exit(header("Location: " . URLROOT . "login/"));

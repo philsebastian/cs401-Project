@@ -11,9 +11,18 @@ class Teach extends Controller
 
     public function index()
     {
-        $this->model('TeachModel');
-        $this->loadView(MAINCORE);
-        echo $this->out();
+        try
+        {
+            $this->model('TeachModel');
+            $content = array('contents' => $this->data->GetRandomContent());
+            $this->loadView(MAINCORE, $content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Teach.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
 }

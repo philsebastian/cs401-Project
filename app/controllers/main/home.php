@@ -11,9 +11,18 @@ class Home extends Controller
 
     public function index()
     {
-        $this->model('HomeModel');
-        $this->loadView(MAINCORE);
-        echo $this->out();
+        try
+        {
+            $this->model('HomeModel');
+            $content = array('contents' => $this->data->GetRandomContent());
+            $this->loadView(MAINCORE, $content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Home.index", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
 }

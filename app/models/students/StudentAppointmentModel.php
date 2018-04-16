@@ -4,13 +4,10 @@ class StudentAppointmentModel extends StudentsModel
 {
     public function __construct()
     {
-        parent::__construct('student appointments');
+        parent::__construct('appointments');
     }
-    public function GetData()
+    public function GetData($content)
     {
-        $data = parent::GetData();
-        $content = array('contents' => ["students" . DS . "_appointments"]);
-        $data = array_merge($data, $content);
-        return $data;
+        return parent::GetData($content);
     }
 }

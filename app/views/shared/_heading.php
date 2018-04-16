@@ -1,14 +1,14 @@
 
 <div class="topnav">
     <div id="navbar" class="topnav max-navbar">
-        <a class="navbar-brand nohover" href="' . $rootpath . '">
+        <a class="navbar-brand nohover" href=" <?php echo $data['rootpath'] ?>">
             <img src="<?= URLROOT . COMMON ?>/favicon.ico" width="25" height="25" class="d-inline-block greyimg align-top" alt="" />Music Lessons
         </a>
         <?php
         foreach($data['primarynav'] as $index => $name)
         {
             echo "<a href=\"{$data['rootpath']}{$name}/\"";
-            if ($data['name'] == $name)
+            if (strcmp($data['name'], $name) == 0)
             {
                 echo ' class="active"';
             }
