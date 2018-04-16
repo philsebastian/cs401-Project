@@ -10,7 +10,7 @@ class StudentProfileModel extends StudentsModel
     public function GetData($content)
     {
         $data = parent::GetData($content);
-        $tabcontent = array("tabs" => ["profile" => "account", "payments" => "account/payments", "my teachers" => "account/myteachers"]);
+        $tabcontent = array("tabs" => ["profile" => "account", "Payment Account" => "account/paymentinfo", "payment history" => "account/payments", "my teacher" => "account/myteacher"]);
         $accountInfo = parent::GetMyStudentAccountInfo();
 
         $data = array_merge($data, $content);

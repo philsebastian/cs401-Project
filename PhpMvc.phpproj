@@ -26,7 +26,7 @@
     <Compile Include="app\controllers\students\studentscontroller.php" />
     <Compile Include="app\controllers\students\studentsnotebook.php" />
     <Compile Include="app\controllers\students\studentsappointments.php" />
-    <Compile Include="app\controllers\students\studentsteacher.php" />
+    <Compile Include="app\controllers\students\studentsteachers.php" />
     <Compile Include="app\controllers\students\studentsaccount.php" />
     <Compile Include="app\controllers\teachers\teacherscontroller.php" />
     <Compile Include="app\controllers\teachers\teachersaccount.php" />
@@ -61,11 +61,14 @@
     <Compile Include="app\views\shared\_footer.php" />
     <Compile Include="app\views\shared\_heading.php" />
     <Compile Include="app\views\shared\_secondarynavigation.php" />
-    <Compile Include="app\views\students\_payments.php" />
+    <Compile Include="app\views\students\account\_payments.php" />
+    <Compile Include="app\views\students\appointments\_appointments.php" />
+    <Compile Include="app\views\students\notebook\_notebook.php" />
+    <Compile Include="app\views\students\teacher\_info.php" />
     <Compile Include="app\views\students\_notebook.php" />
-    <Compile Include="app\views\students\_teacherprofile.php" />
+    <Compile Include="app\views\students\account\_teacherprofile.php" />
     <Compile Include="app\views\students\_appointments.php" />
-    <Compile Include="app\views\students\_profile.php" />
+    <Compile Include="app\views\students\account\_profile.php" />
     <Compile Include="app\views\students\students_core.php" />
     <Compile Include="app\views\teachers\account.php" />
     <Compile Include="index.php" />
@@ -84,6 +87,10 @@
     <Folder Include="app\views\" />
     <Folder Include="app\views\main\" />
     <Folder Include="app\views\shared\" />
+    <Folder Include="app\views\students\account\" />
+    <Folder Include="app\views\students\appointments\" />
+    <Folder Include="app\views\students\teacher\" />
+    <Folder Include="app\views\students\notebook\" />
     <Folder Include="app\views\teachers\" />
     <Folder Include="app\views\students\" />
     <Folder Include="common\" />

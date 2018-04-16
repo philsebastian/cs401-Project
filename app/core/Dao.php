@@ -68,7 +68,7 @@ class Dao
                          LEFT JOIN userinfo ON userinfo.usernameId = usernames.ID)
                   WHERE
                          allcreds.usernameId = :userId
-                         AND allcreds.inactivetime is null AND usernames.inactivetime is null AND permissions.inactivetime is null";
+                         AND allcreds.inactivetime is null AND usernames.inactivetime is null AND permissions.inactivetime is null AND userinfo.inactivetime is null";
 
         $conn = $this->getConnection();
         $q = $conn->prepare($query);
@@ -77,6 +77,44 @@ class Dao
         $q->execute();
         $results = $q->fetchAll();
         return $results[0];
+    }
+
+    public function GetUserAccountInfoId($userId)
+    {
+        $query = "SELECT
+                         userinfo.ID
+                  FROM
+                         userinfo
+                  WHERE
+                         userInfo.usernameId = :userId
+                         AND
+                         userinfo.inactivetime is null";
+
+        $conn = $this->getConnection();
+        $q = $conn->prepare($query);
+        $q->setFetchMode(PDO::FETCH_ASSOC);
+        $q->bindParam(":userId", $userId);
+        $q->execute();
+        $results = $q->fetchAll();
+        return $results[0]['ID'];
+    }
+
+    public function SetUserInfoInactive($oldUserInfo, $usernameId)
+    {
+        $query = "UPDATE
+                            userinfo
+                  SET
+                            inactivetime = now(),
+                            inactiveBy = :usernameId
+                  WHERE
+                            ID = :id";
+
+        $conn = $this->getConnection();
+        $q = $conn->prepare($query);
+        $date = date('m/d/Y h:i:s a', time());
+        $q->bindParam(":usernameId", $usernameId);
+        $q->bindParam(":id", $oldUserInfo);
+        $q->execute();
     }
 
     public function IsUsernameAvailable($username)

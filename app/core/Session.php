@@ -57,6 +57,20 @@ class Session
         return $retArray;
     }
 
+    public function GetUserAccountInfoId($usernameId)
+    {
+        $retValue = 0;
+        try
+        {
+            $retValue = $this->Dao->GetUserAccountInfoId($usernameId);
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("Session.GetUserAccountInfoId", "Error: {$ex->getMessage()}");
+        }
+        return $retValue;
+    }
+
     public function RedirectBasedOnRole()
     {
         try
@@ -90,7 +104,7 @@ class Session
     {
         try
         {
-            $this->CheckFields($info);
+            $this->CheckAllFields($info);
             $usernameId = $this->Dao->GetNewUsernameId($info['username']);
             $userInfoId = $this->Dao->GetNewUserInfoId($usernameId, $info);
 
@@ -111,7 +125,30 @@ class Session
         }
     }
 
-    private function CheckFields(array $info)
+    public function UpdateUserInfo($originating_page, array $info)
+    {
+        try
+        {
+            $usernameId = $_SESSION['usernameId'];
+            $this->CheckAddressFields($originating_page, $info);
+            $oldUserInfo = $this->Dao->GetUserAccountInfoId($usernameId);
+            $this->Dao->SetUserInfoInactive($oldUserInfo, $usernameId);
+            $userInfoId = $this->Dao->GetNewUserInfoId($usernameId, $info);
+
+            $_SESSION['successMessage'] = "Account information update successful.";
+            exit(header("Location: {$originating_page}"));
+        }
+        catch (Exception $ex)
+        {
+            $_SESSION['errorMessage'] = "Error while updating information. Please try again. Error: {$ex->getMessage}";
+            $_SESSION['presets'] = $info;
+            Logger::LogError("Session.UpdateUserInfo", "Error: {$ex->getMessage()}");
+
+            exit(header("Location: {$originating_page}"));
+        }
+    }
+
+    private function CheckAllFields(array $info)
     {
         $errorString = "";
         if(!$this->Dao->IsUsernameAvailable($info['username']))
@@ -134,6 +171,21 @@ class Session
             $_SESSION['errorMessage'] = $errorString;
             $_SESSION['presets'] = $info;
             exit(header("Location: " . URLROOT . "signup/"));
+        }
+    }
+
+    private function CheckAddressFields($originating_page, array $info)
+    {
+        $errorString = "";
+        if($_POST['street'] == "" || $_POST['city'] == "" || $_POST['zip'] == "")
+        {
+            $errorString .= "Address information incomplete. Please fill out all address fields.";
+        }
+        if($errorString != "")
+        {
+            $_SESSION['errorMessage'] = $errorString;
+            $_SESSION['presets'] = $info;
+            exit(header("Location: {$originating_page}"));
         }
     }
 

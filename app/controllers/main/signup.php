@@ -12,7 +12,7 @@ class Signup extends Controller
     public function index()
     {
         try
-        {
+        {            
             $content = array("contents" => ["main" . DS . "_signup"]);
 
             $this->model('SignupModel');

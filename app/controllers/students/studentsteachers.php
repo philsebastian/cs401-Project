@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-class StudentsTeacher extends StudentsController
+class StudentsTeachers extends StudentsController
 {
     public function __construct()
     {
@@ -12,7 +12,7 @@ class StudentsTeacher extends StudentsController
     {
         try
         {
-            $content = array('contents' => ["students" . DS . "_teacherprofile"]);
+            $content = array('contents' => ["students" . DS . "teacher" . DS . "_info"]);
             $this->model('StudentTeacherModel');
             $this->loadView($content);
             echo $this->out();

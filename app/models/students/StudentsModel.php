@@ -7,7 +7,7 @@ class StudentsModel extends PageModels
     public function __construct($name)
     {
         $this->session = new Session();  // PHIL TODO -- initialize with usernameId??
-        $primary = ['account', 'appointments', 'notebook'];
+        $primary = ['account', 'appointments', 'notebook', 'teachers'];
         $control = ['logout'];
         $glyphs  = ['logout' => 'log-out'];
         parent::__construct($name, $primary,  $control, $glyphs, STUDENTROOT);

@@ -12,7 +12,7 @@ class StudentsAccount extends StudentsController
     {
         try
         {
-            $content = array('contents' => ["students" . DS . "_profile"], 'view' => 'profile');
+            $content = array('contents' => ["students" . DS . "account" . DS . "_profile"], 'view' => 'profile');
             $this->model('StudentProfileModel');
             $this->loadView($content);
             echo $this->out();
@@ -36,8 +36,26 @@ class StudentsAccount extends StudentsController
 
     public function update()
     {
-        echo "Update";
-        // Submit changes here and redirect back to student/account/
+        try
+        {
+            if (isset($_POST))
+            {
+                $session = new Session();
+                $session->UpdateUserInfo(STUDENTROOT, $_POST);
+            }
+            else
+            {
+                $_SESSION['errorMessage'] = "Error submitting information. Please try again.";
+                exit(header("Location: " . STUDENTROOT));
+            }
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("StudentsAccount.update", "Error: {$ex->getMessage()}");
+            $_SESSION['errorMessage'] = "Error submitting information. Please try again.";
+            exit(header("Location: " . STUDENTROOT));
+        }
+
     }
 
     public function reset()
@@ -49,7 +67,7 @@ class StudentsAccount extends StudentsController
     {
         try
         {
-            $content = array('contents' => ["students" . DS . "_payments"], 'view' => 'payments');
+            $content = array('contents' => ["students" . DS . "account" . DS . "_payments"], 'view' => 'payment history');
             $this->model('StudentProfileModel');
             $this->loadView($content);
             echo $this->out();
@@ -61,11 +79,16 @@ class StudentsAccount extends StudentsController
         }
     }
 
-    public function myteachers()
+    public function paymentinfo()
+    {
+        echo "Payment Info";
+    }
+
+    public function myteacher()
     {
         try
         {
-            $content = array('contents' => ["students" . DS . "_teacherprofile"], 'view' => 'my teachers');
+            $content = array('contents' => ["students" . DS . "account" . DS . "_teacherprofile"], 'view' => 'my teacher');
             $this->model('StudentProfileModel');
             $this->loadView($content);
             echo $this->out();
