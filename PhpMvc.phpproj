@@ -61,6 +61,7 @@
     <Compile Include="app\views\shared\_footer.php" />
     <Compile Include="app\views\shared\_heading.php" />
     <Compile Include="app\views\shared\_secondarynavigation.php" />
+    <Compile Include="app\views\students\account\_paymentaccount.php" />
     <Compile Include="app\views\students\account\_payments.php" />
     <Compile Include="app\views\students\appointments\_appointments.php" />
     <Compile Include="app\views\students\notebook\_notebook.php" />
@@ -95,28 +96,30 @@
     <Folder Include="app\views\students\" />
     <Folder Include="common\" />
     <Folder Include="common\css\" />
+    <Folder Include="common\css\unused\" />
+    <Folder Include="common\javascript\unused\" />
     <Folder Include="fonts\" />
     <Folder Include="common\javascript\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\.htaccess" />
     <Content Include=".htaccess" />
-    <Content Include="common\css\bootstrap-theme.css" />
-    <Content Include="common\css\bootstrap-theme.css.map" />
+    <Content Include="common\css\unused\bootstrap-theme.css" />
+    <Content Include="common\css\unused\bootstrap-theme.css.map" />
     <Content Include="common\css\bootstrap.css" />
-    <Content Include="common\css\bootstrap.css.map" />
+    <Content Include="common\css\unused\bootstrap.css.map" />
     <Content Include="common\css\general.css" />
-    <Content Include="common\css\jquery-ui.css" />
-    <Content Include="common\css\jquery-ui.structure.css" />
-    <Content Include="common\css\tile.css" />
-    <Content Include="common\javascript\tile.js" />
+    <Content Include="common\css\unused\jquery-ui.css" />
+    <Content Include="common\css\unused\jquery-ui.structure.css" />
+    <Content Include="common\css\unused\tile.css" />
+    <Content Include="common\javascript\unused\tile.js" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="common\javascript\big.js" />
-    <Content Include="common\javascript\date.format.js" />
+    <Content Include="common\javascript\unused\big.js" />
+    <Content Include="common\javascript\unused\date.format.js" />
     <Content Include="common\javascript\general.js" />
     <Content Include="common\favicon.ico" />
     <Content Include="common\favicon.png" />

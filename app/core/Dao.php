@@ -81,14 +81,8 @@ class Dao
 
     public function GetUserAccountInfoId($userId)
     {
-        $query = "SELECT
-                         userinfo.ID
-                  FROM
-                         userinfo
-                  WHERE
-                         userInfo.usernameId = :userId
-                         AND
-                         userinfo.inactivetime is null";
+        $query = "SELECT userinfo.ID FROM userinfo
+                  WHERE userInfo.usernameId = :userId AND userinfo.inactivetime is null";
 
         $conn = $this->getConnection();
         $q = $conn->prepare($query);
@@ -101,17 +95,11 @@ class Dao
 
     public function SetUserInfoInactive($oldUserInfo, $usernameId)
     {
-        $query = "UPDATE
-                            userinfo
-                  SET
-                            inactivetime = now(),
-                            inactiveBy = :usernameId
-                  WHERE
-                            ID = :id";
+        $query = "UPDATE userinfo SET inactivetime = now(), inactiveBy = :usernameId
+                  WHERE ID = :id";
 
         $conn = $this->getConnection();
         $q = $conn->prepare($query);
-        $date = date('m/d/Y h:i:s a', time());
         $q->bindParam(":usernameId", $usernameId);
         $q->bindParam(":id", $oldUserInfo);
         $q->execute();

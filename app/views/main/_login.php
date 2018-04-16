@@ -1,7 +1,7 @@
 
 <div class="contain">
     <form name="login" action="<?= URLROOT ?>login/authenticate/" method="POST">        
-        <label class="grouplabel" for="credentials">Login</label>
+        <label class="grouplabel" for="credentials">Log in to your account:</label>
         <?php
         if (isset($_SESSION['successMessage']))
         {

@@ -26,9 +26,11 @@ class Builder
         $styles = "";
         $files = scandir(BASE . DS .CSS);
 
+        $styles .= '<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">';
+
         foreach ($files as $file)
         {
-            if (strcmp($file, '.') != 0 && strcmp($file, '..') != 0)
+            if (strcmp($file, '.') != 0 && strcmp($file, '..') != 0 && strcmp($file, 'unused'))
             {
                 $location = CSS . DS . $file;
                 $location = str_replace(DS, '/', $location);
@@ -52,7 +54,7 @@ class Builder
 
         foreach ($files as $file)
         {
-            if (strcmp($file, '.') != 0 && strcmp($file, '..') != 0)
+            if (strcmp($file, '.') != 0 && strcmp($file, '..') != 0 && strcmp($file, 'unused'))
             {
                 $location = JS . DS . $file;
                 $location = str_replace(DS, '/', $location);

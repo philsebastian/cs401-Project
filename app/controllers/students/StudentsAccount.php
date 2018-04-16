@@ -81,7 +81,18 @@ class StudentsAccount extends StudentsController
 
     public function paymentinfo()
     {
-        echo "Payment Info";
+        try
+        {
+            $content = array('contents' => ["students" . DS . "account" . DS . "_paymentaccount"], 'view' => 'payment account');
+            $this->model('StudentProfileModel');
+            $this->loadView($content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+            Logger::LogError("StudentsAccount.paymentinfo", "Error: {$ex->getMessage()}");
+            exit(header("Location: " . URLROOT . "home"));
+        }
     }
 
     public function myteacher()
