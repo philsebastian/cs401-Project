@@ -1,3 +1,3 @@
         <div class="contain">
-            <p class="">No teacher currently set.</p>
+            <p class="">There are currently no teachers in the system.</p>
         </div>

@@ -8,6 +8,12 @@ class StudentAppointmentModel extends StudentsModel
     }
     public function GetData($content)
     {
-        return parent::GetData($content);
+        $data = parent::GetData($content);
+
+        $tabcontent = array("tabs" => ["upcoming" => "appointments", "history" => "appointments/history", "schedule" => "appointments/schedule"]);
+
+        $data = array_merge($data, $tabcontent);
+
+        return $data;
     }
 }

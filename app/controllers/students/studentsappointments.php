@@ -10,11 +10,47 @@ class StudentsAppointments extends StudentsController
 
     public function index()
     {
-        $content = array('contents' => ["students" . DS . "appointments" . DS . "_appointments"]);
+        try
+        {
+            $content = array('contents' => ["students" . DS . "appointments" . DS . "_appointments"], 'view' => 'upcoming');
+            $this->model('StudentAppointmentModel');
+            $this->loadView($content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
 
-        $this->model('StudentAppointmentModel');
-        $this->loadView($content);
-        echo $this->out();
+        }
+    }
+
+    public function history()
+    {
+        try
+        {
+            $content = array('contents' => ["students" . DS . "appointments" . DS . "_history"], 'view' => 'history');
+            $this->model('StudentAppointmentModel');
+            $this->loadView($content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+
+        }
+    }
+
+    public function schedule()
+    {
+        try
+        {
+            $content = array('contents' => ["students" . DS . "appointments" . DS . "_schedule"], 'view' => 'schedule');
+            $this->model('StudentAppointmentModel');
+            $this->loadView($content);
+            echo $this->out();
+        }
+        catch (Exception $ex)
+        {
+
+        }
     }
 
 }

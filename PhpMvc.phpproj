@@ -64,6 +64,8 @@
     <Compile Include="app\views\students\account\_paymentaccount.php" />
     <Compile Include="app\views\students\account\_payments.php" />
     <Compile Include="app\views\students\appointments\_appointments.php" />
+    <Compile Include="app\views\students\appointments\_schedule.php" />
+    <Compile Include="app\views\students\appointments\_history.php" />
     <Compile Include="app\views\students\notebook\_notebook.php" />
     <Compile Include="app\views\students\teacher\_info.php" />
     <Compile Include="app\views\students\_notebook.php" />

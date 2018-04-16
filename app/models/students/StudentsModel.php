@@ -64,4 +64,16 @@ class StudentsModel extends PageModels
     {
         return ['paymenthistory' => []];
     }
+    protected function GetUpcomingInfo()
+    {
+        return ['appointments' => []];
+    }
+    protected function GetHistoryInfo()
+    {
+        return ['history' => []];
+    }
+    protected function GetScheduleInfo()
+    {
+        return ['schedule' => []];
+    }
 }
