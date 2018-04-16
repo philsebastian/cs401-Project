@@ -12,19 +12,38 @@ class StudentsModel extends PageModels
         $glyphs  = ['logout' => 'log-out'];
         parent::__construct($name, $primary,  $control, $glyphs, STUDENTROOT);
     }
- 
+
     public function GetData($content)
     {
-        return parent::GetData($content);
+        $data = parent::GetData($content);
+
+        $part = $content['view'];
+        $part = ucwords($part);
+        $part = str_replace(' ', '', $part);
+        $searchMethod = "GetMy{$part}Info";
+        $displayInfo = self::$searchMethod();
+
+        $data = array_merge($data, $displayInfo);
+
+        return $data;
     }
 
-    public function GetMyStudentAccountInfo()
+    protected function GetMyProfileInfo()
     {
         //$session = new Session();
         return $this->session->GetMyUserAccountInfo($_SESSION['usernameId']);
     }
-    public function GetMyTeachers()
+    protected function GetMyTeacherInfo()
     {
-        return $this->session->GetMyTeachers($_SESSION['usernameId']);
+        //return $this->session->GetMyTeachers($_SESSION['usernameId']);
+        return ['myteacher' => []];
+    }
+    protected function GetMyPaymentAccountInfo() // PHIL TODO -- to implement
+    {
+        return ['paymentaccount' => []];
+    }
+    protected function GetMyPaymentHistoryInfo() // PHIL TODO -- to implement
+    {
+        return ['paymenthistory' => []];
     }
 }
