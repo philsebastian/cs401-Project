@@ -68,7 +68,7 @@
                     <label for="street">First Name:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="firstname" value="<?= htmlspecialchars($data['firstname']) ?>" />
+                    <input type="text" name="firstname" value="<?= $data['firstname'] ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -76,7 +76,7 @@
                     <label for="street">Last Name:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="lastname" value="<?= htmlspecialchars($data['lastname']) ?>" />
+                    <input type="text" name="lastname" value="<?= $data['lastname'] ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -84,7 +84,7 @@
                     <label for="street">Street address:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="street" value="<?= htmlspecialchars($data['street']) ?>" />
+                    <input type="text" name="street" value="<?= $data['street'] ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -92,7 +92,7 @@
                     <label for="city">City:</label>
                 </div>
                 <div class="col-50">
-                    <input type="text" name="city" value="<?= htmlspecialchars($data['city']) ?>" />
+                    <input type="text" name="city" value="<?= $data['city'] ?>" />
                 </div>
             </div>
             <div class="form-row">
@@ -100,14 +100,14 @@
                     <label for="state">State:</label>
                 </div>
                 <div class="col-10">
-                    <input type="text" name="state" value="<?= htmlspecialchars($data['state']) ?>" />
+                    <input type="text" name="state" value="<?= $data['state'] ?>" />
                 </div>
                 <div class="col-10"></div>
                 <div class="col-15">
                     <label for="zip">Zip Code:</label>
                 </div>
                 <div class="col-15">
-                    <input type="number" name="zip" value="<?= htmlspecialchars($data['zip']) ?>" />
+                    <input type="number" name="zip" value="<?= $data['zip'] ?>" />
                 </div>
             </div>
         </div>

@@ -26,6 +26,9 @@ class Controller
     {
         $data = $this->data->GetData($content);
         Logger::LogTrace("Controller.GetData", "Getting data. Contents size " . count($data));
+
+        $data = self::EscapeHTMLEntities($data);
+
         return $data;
     }
 
@@ -56,5 +59,21 @@ class Controller
     public function out()
     {
         return $this->content;
+    }
+
+    private function EscapeHTMLEntities($data)
+    {
+        if (is_array($data))
+        {
+            foreach ($data as $index => $value)
+            {
+                $data[$index] = self::EscapeHTMLEntities($value);
+            }
+            return $data;
+        } 
+        else
+        {
+            return htmlspecialchars($data);
+        }
     }
 }
